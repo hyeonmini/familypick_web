@@ -20,13 +20,13 @@ Usage:
   python3 scripts/build_site.py
   python3 scripts/build_site.py --html-only
   python3 scripts/build_site.py --force
-  python3 scripts/build_site.py --personas-src /path/to/personas --screenshots-src /path/to/screenshots
 """
 
 import argparse
 import glob
 import html as html_lib
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -76,13 +76,11 @@ def convert_to_webp_or_jpg(src_path: str, dst_stem_path: str, target_width: int,
     os.makedirs(os.path.dirname(dst_stem_path), exist_ok=True)
 
     if CWEBP:
-        # Query dimensions or let cwebp scale proportionally with -resize W 0
         cmd = [CWEBP, "-quiet", "-q", "82", "-resize", str(target_width), "0", src_path, "-o", webp_dst]
         res = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         if res.returncode == 0 and os.path.exists(webp_dst):
             return os.path.basename(webp_dst)
 
-    # Fallback to sips JPEG conversion
     subprocess.run(
         [SIPS, "-s", "format", "jpeg", "-s", "formatOptions", "82", "--resampleWidth", str(target_width), src_path, "--out", jpg_dst],
         stdout=subprocess.DEVNULL,
@@ -105,10 +103,7 @@ def ensure_brand_icons(force: bool = False) -> None:
 
 
 def sync_personas(personas_src: str, force: bool = False) -> dict:
-    """Sync and optimize regional persona images into assets/personas/<region>/.
-
-    Returns {region: {stem: relative_path_from_root}}.
-    """
+    """Sync and optimize regional persona images into assets/personas/<region>/."""
     resolved = {r: {} for r in REGIONS}
     for region in REGIONS:
         local_dir = os.path.join(ROOT, "assets", "personas", region)
@@ -117,7 +112,6 @@ def sync_personas(personas_src: str, force: bool = False) -> dict:
 
         for stem, width in PERSONA_STEMS:
             dst_stem = os.path.join(local_dir, stem)
-            # Locate source candidate: external personas_src first if present, else existing local file
             src_candidate = None
             for search_dir in ([ext_dir, local_dir] if ext_dir else [local_dir]):
                 for ext in (".jpg", ".jpeg", ".png", ".webp"):
@@ -129,7 +123,6 @@ def sync_personas(personas_src: str, force: bool = False) -> dict:
                     break
 
             if src_candidate:
-                # If already an optimized .webp in local_dir and not forcing, use as-is
                 if src_candidate == dst_stem + ".webp" and not force:
                     out_fn = os.path.basename(src_candidate)
                 else:
@@ -156,7 +149,6 @@ def find_screenshot_sources_for_locale(loc: dict, extra_srcs: list) -> list:
             if not os.path.isdir(folder):
                 continue
 
-            # Gather image files (prefer iPhone over iPad if mixed)
             files = []
             for ext in ("*.png", "*.jpg", "*.jpeg", "*.webp"):
                 files.extend(glob.glob(os.path.join(folder, ext)))
@@ -167,7 +159,6 @@ def find_screenshot_sources_for_locale(loc: dict, extra_srcs: list) -> list:
             iphone_files = [f for f in files if "ipad" not in os.path.basename(f).lower()]
             pool = iphone_files if len(iphone_files) >= 4 else files
 
-            # Match explicit step prefixes (ss-01..04 or 01..04 or 1..4)
             matched = []
             for idx in range(1, 5):
                 prefixes = (f"ss-0{idx}", f"ss_{idx}", f"0{idx}", f"{idx}_", f"{idx}-")
@@ -217,7 +208,6 @@ def ensure_badges(force: bool = False) -> dict:
     badges_dir = os.path.join(ROOT, "assets", "badges")
     os.makedirs(badges_dir, exist_ok=True)
 
-    # Map to StudioTaeo's existing downloaded badges first to avoid unnecessary network calls
     studiotaeo_map = {
         "ko-kr": "",
         "en-us": "en",
@@ -242,7 +232,6 @@ def ensure_badges(force: bool = False) -> dict:
                 continue
 
             copied = False
-            # Try exact apple badge fetch first for en-gb, or copy from StudioTaeo cache
             st_sub = studiotaeo_map.get(apple)
             if st_sub is not None and apple != "en-gb":
                 st_path = os.path.join(STUDIOTAEO_DIR, st_sub, f"appstore-{variant}.svg") if st_sub else os.path.join(STUDIOTAEO_DIR, f"appstore-{variant}.svg")
@@ -267,7 +256,6 @@ def ensure_badges(force: bool = False) -> dict:
                         pass
 
             if not copied:
-                # Final local fallback from StudioTaeo en badge
                 fb = os.path.join(STUDIOTAEO_DIR, "en", f"appstore-{variant}.svg")
                 if os.path.exists(fb):
                     shutil.copy2(fb, dst)
@@ -293,130 +281,74 @@ def build_lang_dropdown(active_code: str) -> str:
         is_active = loc["code"] == active_code
         cls = ' class="active"' if is_active else ""
         chk = "<span>✓</span>" if is_active else ""
-        items.append(f'  <li role="option"><a href="{href}"{cls}><span>{loc["name"]}</span>{chk}</a></li>')
+        items.append(f'  <li role="option"><a href="{href}" lang="{loc["lang"]}"{cls}><span>{loc["name"]}</span>{chk}</a></li>')
     items.append("</ul>")
     return "\n".join(items)
 
 
-def img_or_placeholder(rel_path: str, prefix: str, alt: str, eager: bool = False, size: int = 480) -> str:
-    esc_alt = html_lib.escape(alt, quote=True)
-    if rel_path:
-        loading = 'loading="eager" fetchpriority="high"' if eager else 'loading="lazy"'
-        return f'<img src="{prefix}{rel_path}" alt="{esc_alt}" width="{size}" height="{size}" {loading}>'
-    return f'<div class="ph-art" role="img" aria-label="{esc_alt}"><span>📷</span><small>{esc_alt}</small></div>'
+def format_hero_note(note_text: str) -> str:
+    parts = [p.strip() for p in note_text.split("·") if p.strip()]
+    return '<span class="hn-dot">·</span>'.join(f'<span class="hn-seg">{p}</span>' for p in parts)
 
 
-def render_hero_showcase(loc: dict, s: dict, persona_map: dict, prefix: str) -> str:
+def render_hero_stage(loc: dict, s: dict, persona_map: dict, ss_list: list, prefix: str) -> str:
     reg = persona_map.get(loc["region"], {})
-    p1 = img_or_placeholder(reg.get("01-hero-park", ""), prefix, s["HERO_P1_CAP"], eager=True, size=720)
-    p2 = img_or_placeholder(reg.get("02-play-blocks", ""), prefix, s["HERO_P2_CAP"], size=480)
-    p3 = img_or_placeholder(reg.get("03-snack-smile", ""), prefix, s["HERO_P3_CAP"], size=480)
-    p4 = img_or_placeholder(reg.get("04-outdoor-walk", ""), prefix, s["HERO_P4_CAP"], size=480)
-    h1 = img_or_placeholder(reg.get("05-review-messy-room", ""), prefix, s["HERO_H1_CAP"], size=480)
-    h2 = img_or_placeholder(reg.get("06-review-parent-selfie", ""), prefix, s["HERO_H2_CAP"], size=480)
+    p1_rel = reg.get("01-hero-park", "")
+    p2_rel = reg.get("03-snack-smile", "")
+    ss_hero = ss_list[0] if ss_list else "assets/screenshots/ko/ss-01.webp"
 
-    return f"""<div class="persona-stage reveal" data-d="2">
-      <div class="hero-polaroid">
-        <div class="hero-photo-wrap">
-          {p1}
-          <span class="pick-pill"><span class="dot-check">✓</span> {s["HERO_PICKED_TAG"].lstrip("✓ ").strip()}</span>
-          <span class="hero-check-badge" aria-hidden="true">✓</span>
+    p1_alt = html_lib.escape(s["HERO_P1_CAP"], quote=True)
+    p2_alt = html_lib.escape(s["HERO_P2_CAP"], quote=True)
+    ss_alt = html_lib.escape(f"{s['BRAND']} — {s['G1_TITLE']}", quote=True)
+
+    return f"""<div class="hero-stage reveal" data-d="1">
+      <div class="stage-halo" aria-hidden="true"></div>
+
+      <div class="float-print p-left">
+        <div class="fp-img">
+          <img src="{prefix}{p1_rel}" alt="{p1_alt}" width="260" height="260" loading="eager">
+          <span class="fp-pill">♥ {s["HERO_TAG_PICK"]}</span>
         </div>
-        <div class="polaroid-meta">
-          <b>{s["HERO_P1_CAP"]}</b>
-          <span>{s["HERO_PICKED_SUB"]}</span>
-        </div>
+        <div class="fp-cap">{s["HERO_P1_CAP"]}</div>
       </div>
 
-      <div class="curation-board">
-        <div class="board-group">
-          <div class="board-hd">
-            <span>{s["HERO_KEEP_LABEL"]}</span>
-            <span class="status-ok">KEEP ✓</span>
-          </div>
-          <div class="keep-grid">
-            <div class="mini-card"><div class="thumb">{p2}<span class="m-chk">✓</span></div><div class="m-cap">{s["HERO_P2_CAP"]}</div></div>
-            <div class="mini-card"><div class="thumb">{p3}<span class="m-chk">✓</span></div><div class="m-cap">{s["HERO_P3_CAP"]}</div></div>
-            <div class="mini-card"><div class="thumb">{p4}<span class="m-chk">✓</span></div><div class="m-cap">{s["HERO_P4_CAP"]}</div></div>
-          </div>
-        </div>
+      <div class="hero-phone">
+        <img src="{prefix}{ss_hero}" alt="{ss_alt}" width="680" height="1478" loading="eager" fetchpriority="high">
+      </div>
 
-        <div class="board-group">
-          <div class="board-hd">
-            <span>{s["HERO_HOLD_LABEL"]}</span>
-            <span class="status-hold">HOLD</span>
-          </div>
-          <div class="hold-grid">
-            <div class="mini-card held"><div class="thumb">{h1}<span class="m-hold">HOLD</span></div><div class="m-cap">{s["HERO_H1_CAP"]}</div></div>
-            <div class="mini-card held"><div class="thumb">{h2}<span class="m-hold">HOLD</span></div><div class="m-cap">{s["HERO_H2_CAP"]}</div></div>
-          </div>
+      <div class="float-print p-right">
+        <div class="fp-img">
+          <img src="{prefix}{p2_rel}" alt="{p2_alt}" width="240" height="240" loading="eager">
+          <span class="fp-check" aria-hidden="true">✓</span>
         </div>
+        <div class="fp-cap">{s["HERO_P2_CAP"]}</div>
       </div>
     </div>"""
 
 
-def render_step_media(step_idx: int, loc: dict, s: dict, ss_list: list, persona_map: dict, prefix: str) -> str:
-    """Embed localized screenshot if present; otherwise render a localized UI preview card."""
-    if len(ss_list) >= step_idx and ss_list[step_idx - 1]:
-        rel = ss_list[step_idx - 1]
-        alt_text = html_lib.escape(s[f"S{step_idx}_H3"].replace("<br>", " "), quote=True)
-        return f'<div class="phone"><img src="{prefix}{rel}" alt="{alt_text}" width="680" height="1478" loading="lazy"></div>'
-
-    reg = persona_map.get(loc["region"], {})
-    t1 = img_or_placeholder(reg.get("01-hero-park", ""), prefix, s["HERO_P1_CAP"], size=320)
-    t2 = img_or_placeholder(reg.get("02-play-blocks", ""), prefix, s["HERO_P2_CAP"], size=320)
-    t3 = img_or_placeholder(reg.get("03-snack-smile", ""), prefix, s["HERO_P3_CAP"], size=320)
-    t4 = img_or_placeholder(reg.get("04-outdoor-walk", ""), prefix, s["HERO_P4_CAP"], size=320)
-
-    if step_idx == 1:
-        return f"""<div class="phone"><div class="phone-mock">
-          <div class="pm-hd"><b>{s["MOCK_HEADER_1"]}</b><span>{s["MOCK_SUB_1"]}</span></div>
-          <div class="pm-grid">
-            <div class="pm-cell">{t1}<span class="ck">✓</span></div>
-            <div class="pm-cell">{t2}<span class="ck">✓</span></div>
-            <div class="pm-cell">{t3}<span class="ck">✓</span></div>
-            <div class="pm-cell">{t4}<span class="ck">✓</span></div>
-          </div>
-          <div class="pm-btn">{s["MOCK_BTN_1"]}</div>
-        </div></div>"""
-
-    if step_idx == 2:
-        return f"""<div class="phone"><div class="phone-mock">
-          <div class="pm-hd"><b>{s["MOCK_HEADER_2"]}</b><span>On-Device Apple Vision</span></div>
-          <div class="pm-list">
-            <div class="pm-row"><span class="ic ok">✓</span><span>{s["MOCK_TASTE_1"]}</span></div>
-            <div class="pm-row"><span class="ic ok">☀</span><span>{s["MOCK_TASTE_2"]}</span></div>
-            <div class="pm-row"><span class="ic">−</span><span>{s["MOCK_TASTE_3"]}</span></div>
-          </div>
-          <div class="pm-grid" style="grid-template-columns:repeat(3,1fr)">
-            <div class="pm-cell">{t1}<span class="ck">✓</span></div>
-            <div class="pm-cell">{t3}<span class="ck">✓</span></div>
-            <div class="pm-cell off">{img_or_placeholder(reg.get("05-review-messy-room", ""), prefix, s["HERO_H1_CAP"], size=240)}</div>
-          </div>
-        </div></div>"""
-
-    if step_idx == 3:
-        return f"""<div class="phone"><div class="phone-mock">
-          <div class="pm-hd"><b>{s["BRAND"]}</b><span>Apple Photos</span></div>
-          <div class="pm-alert">
-            <div class="al-ic"><img src="{prefix}assets/app-icon.png" alt="{s["BRAND"]}" width="44" height="44"></div>
-            <b>{s["MOCK_HEADER_3"]}</b>
-            <div class="al-sub">{s["MOCK_ALBUM_NAME"]}</div>
-            <div class="pm-exif">✓ {s["MOCK_EXIF"]}</div>
-            <div class="pm-btn">{s["MOCK_OPEN_FA"]}</div>
-          </div>
-          <div style="text-align:center;font-size:11px;color:#847769;font-weight:700">EXIF DateTimeOriginal · 100%</div>
-        </div></div>"""
-
-    return f"""<div class="phone"><div class="phone-mock">
-      <div class="pm-hd"><b>{s["MOCK_HEADER_4"]}</b><span>{s["MOCK_ALBUM_NAME"]}</span></div>
-      <div class="pm-grid" style="grid-template-columns:repeat(2,1fr)">
-        <div class="pm-cell">{t2}<span class="ck">✓</span></div>
-        <div class="pm-cell">{t4}<span class="ck">✓</span></div>
+def render_gallery_strip(s: dict, ss_list: list, prefix: str) -> str:
+    cards = ['<div class="screen-strip">']
+    for idx in range(1, 5):
+        rel = ss_list[idx - 1] if len(ss_list) >= idx else f"assets/screenshots/ko/ss-0{idx}.webp"
+        title = s[f"G{idx}_TITLE"]
+        desc = s[f"G{idx}_DESC"]
+        alt_text = html_lib.escape(f"{s['BRAND']} — {title}", quote=True)
+        cards.append(
+            f"""  <article class="screen-card">
+    <div class="sc-meta">
+      <div class="sc-top">
+        <span class="sc-num">{idx}</span>
+        <h3>{title}</h3>
       </div>
-      <div class="pm-row"><span class="ic ok">✓</span><span>{s["MOCK_EXCL"]}</span></div>
-      <div class="pm-btn" style="background:#3A322C">{s["MOCK_CLEAN"]}</div>
-    </div></div>"""
+      <p>{desc}</p>
+    </div>
+    <div class="mini-phone">
+      <img src="{prefix}{rel}" alt="{alt_text}" width="680" height="1478" loading="lazy">
+    </div>
+  </article>"""
+        )
+    cards.append("</div>")
+    return "\n".join(cards)
 
 
 def render_locale_page(
@@ -451,11 +383,9 @@ def render_locale_page(
         "%%BADGE_WHITE_SRC%%": badge_white,
         "%%TERMS_FILE%%": terms_file,
         "%%PRIVACY_FILE%%": privacy_file,
-        "%%HERO_SHOWCASE%%": render_hero_showcase(loc, s, persona_map, prefix),
-        "%%STEP_MEDIA_1%%": render_step_media(1, loc, s, ss_list, persona_map, prefix),
-        "%%STEP_MEDIA_2%%": render_step_media(2, loc, s, ss_list, persona_map, prefix),
-        "%%STEP_MEDIA_3%%": render_step_media(3, loc, s, ss_list, persona_map, prefix),
-        "%%STEP_MEDIA_4%%": render_step_media(4, loc, s, ss_list, persona_map, prefix),
+        "%%HERO_STAGE%%": render_hero_stage(loc, s, persona_map, ss_list, prefix),
+        "%%GALLERY_STRIP%%": render_gallery_strip(s, ss_list, prefix),
+        "%%HERO_NOTE%%": format_hero_note(s["HERO_NOTE"]),
         "%%P%%": prefix,
     }
 
@@ -464,6 +394,10 @@ def render_locale_page(
 
     for k in sorted(KEYS, key=len, reverse=True):
         out = out.replace(f"%%{k}%%", s[k])
+
+    leftover = re.findall(r"%%[A-Z0-9_]+%%", out)
+    if leftover:
+        raise RuntimeError(f"Unreplaced placeholders in {loc['code']}: {leftover}")
 
     return out
 
@@ -500,9 +434,8 @@ def main() -> None:
 
         p_cnt = len(persona_map.get(loc["region"], {}))
         s_cnt = len(ss_map.get(loc["code"], []))
-        mode = f"{s_cnt} screenshots" if s_cnt else "UI-mockup fallback"
         route = "/" + (f"{loc['dir']}/" if loc["dir"] else "")
-        print(f"  {loc['code']:8s} -> {route:10s} [region={loc['region']}: {p_cnt}/6 personas · {mode}]")
+        print(f"  {loc['code']:8s} -> {route:10s} [region={loc['region']}: {p_cnt}/6 personas · {s_cnt}/4 screenshots]")
 
     print(f"Built {len(LOCALES)} localized landing pages in {ROOT}")
 
