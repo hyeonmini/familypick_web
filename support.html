@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FamilyPick · 패밀리픽 — Support / 고객지원</title>
+    <meta name="description" content="FamilyPick (패밀리픽) customer support, troubleshooting FAQ, Photo Library permissions, and FamilyAlbum upload guide.">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/app-icon.png">
+    <style>
+        :root {
+            --bg: #FFF8F5;
+            --card: #FFFFFF;
+            --text: #1C1814;
+            --muted: #5C5146;
+            --accent: #D94A38;
+            --accent-soft: #FCE8E4;
+            --border: rgba(28, 24, 20, 0.12);
+            --code-bg: #F3EAE2;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #121212;
+                --card: #1C1A18;
+                --text: #EAE4DE;
+                --muted: #B0A69B;
+                --accent: #FF7A68;
+                --accent-soft: rgba(217, 74, 56, 0.18);
+                --border: #332E2A;
+                --code-bg: #2A2521;
+            }
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.66;
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+            background-color: var(--bg);
+            color: var(--text);
+            word-break: keep-all;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding-bottom: 1.25rem;
+            margin-bottom: 1.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .brand-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .brand-link img { width: 28px; height: 28px; border-radius: 7px; }
+        .nav-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+        .nav-pills a {
+            padding: 5px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        h1 { font-size: 1.9rem; margin: 0 0 0.5rem; }
+        h2 { font-size: 1.3rem; margin: 2rem 0 0.85rem; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .contact-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.35rem 1.5rem;
+            margin: 1.25rem 0 2rem;
+        }
+        .email-link {
+            display: inline-block;
+            font-size: 1.22rem;
+            font-weight: 700;
+            margin: 0.35rem 0;
+        }
+        .badge-note {
+            display: inline-block;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin-bottom: 0.5rem;
+        }
+        .faq-list { display: grid; gap: 14px; }
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.15rem 1.3rem;
+        }
+        .faq-item h3 { margin: 0 0 0.45rem; font-size: 1.04rem; line-height: 1.4; }
+        .faq-item p { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.95rem; }
+        code { background-color: var(--code-bg); padding: 2px 6px; border-radius: 5px; font-size: 0.9em; }
+        hr { border: none; border-top: 1px solid var(--border); margin: 2.25rem 0; }
+        .legal-links { list-style: none; padding: 0; display: flex; gap: 18px; flex-wrap: wrap; }
+        .footer-note { color: var(--muted); font-size: 0.86rem; margin-top: 1.5rem; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="brand-link" href="/"><img src="assets/app-icon.png" alt="FamilyPick">FamilyPick · 패밀리픽</a>
+        <div class="nav-pills">
+            <a href="#en">English</a>
+            <a href="#ko">한국어</a>
+            <a href="/">Home</a>
+        </div>
+    </div>
+
+    <h1>FamilyPick Support · 패밀리픽 고객지원</h1>
+    <p style="color: var(--muted); margin-top: 0;">Need help or have a suggestion? We read every message personally.<br>궁금한 점이나 불편한 점이 있으시면 언제든 편하게 메일 주세요.</p>
+
+    <div class="contact-card">
+        <span class="badge-note">100% On-Device Photo &amp; AI · Zero Photos Uploaded</span>
+        <div><strong>Email Support / 이메일 문의:</strong></div>
+        <a class="email-link" href="mailto:hello@studiotaeo.com">hello@studiotaeo.com</a>
+        <p style="margin: 0.35rem 0 0; color: var(--muted); font-size: 0.93rem;">
+            For faster troubleshooting, please mention your iPhone/iPad model and iOS version. (Note: Because FamilyPick requires no account and never uploads your photos to any server, we cannot view your photo library.)<br>
+            빠른 확인을 위해 기기 모델과 iOS 버전을 함께 적어주시면 도움이 됩니다. (패밀리픽은 계정이 없으며 사진을 서버로 전송하지 않으므로 회사는 사용자의 사진을 열람할 수 없습니다.)
+        </p>
+    </div>
+
+    <!-- ENGLISH FAQ -->
+    <section id="en">
+        <h2>Troubleshooting &amp; FAQ (English)</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3>1. Photo Library Permissions — Why aren't all my photos or created albums showing?</h3>
+                <p>Open <strong>iOS Settings &gt; Apps &gt; FamilyPick &gt; Photos</strong> and select <strong>Full Access</strong>. Full Access allows FamilyPick to scan your chosen date range locally on your iPhone and create candidate albums directly inside Apple Photos when you tap <em>Create Album</em>. If you prefer <em>Limited Access</em>, tap "Edit Selected Photos" in iOS Settings to include the photos you want scored.</p>
+            </div>
+            <div class="faq-item">
+                <h3>2. How do I upload to FamilyAlbum / Mitene while keeping original photo capture dates?</h3>
+                <p>Review your picked candidates in FamilyPick and tap <strong>Create Album</strong>. Tap <strong>Open FamilyAlbum</strong> (or open FamilyAlbum / みてね / 家家相簿 directly), choose to add photos from the newly created <code>FamilyPick · …</code> album in Apple Photos, and upload in bulk. Because Apple Photos albums reference your exact original assets, <strong>100% of original EXIF capture dates (<code>DateTimeOriginal</code>) are preserved</strong> so photos sort into the right month and day automatically.</p>
+            </div>
+            <div class="faq-item">
+                <h3>3. How do I clean up temporary candidate albums? Will my original photos stay safe?</h3>
+                <p>Yes — your original camera roll photos are always safe. Open <strong>Saved Albums (Managed Albums)</strong> inside FamilyPick to delete individual or past temporary candidate albums in one tap. Deleting an album removes only the album container; <strong>original photos in Recents/Library are never deleted</strong>, and photos you already put into an album are automatically skipped in future periods so you don't get duplicate picks.</p>
+            </div>
+            <div class="faq-item">
+                <h3>4. How do I reset personalized taste learning or previous album exclusion history?</h3>
+                <p>Open <strong>Settings</strong> in FamilyPick: tap <strong>Reset Learned Preferences</strong> to start fresh with your taste model (or update your child's reference photos), or tap <strong>Reset Previous Album History</strong> if you want photos from earlier albums to be eligible for automatic recommendations again.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- KOREAN FAQ -->
+    <section id="ko" lang="ko">
+        <h2>자주 묻는 질문 및 문제 해결 (한국어)</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3>1. 사진 보관함 권한 설정 — 사진이 일부만 보이거나 앨범 생성이 안 될 때</h3>
+                <p><strong>iOS 설정 &gt; 앱 &gt; 패밀리픽 &gt; 사진</strong>에서 <strong>「전체 접근」</strong>으로 설정해 주세요. 전체 접근을 허용해야 지정한 기간의 사진을 기기 내에서 빠짐없이 분석하고 「앨범 만들기」 시 Apple 기본 『사진』 앱에 후보 앨범을 바로 생성할 수 있습니다(제한된 접근 사용 시 선택한 사진만 분석됩니다).</p>
+            </div>
+            <div class="faq-item">
+                <h3>2. 패밀리앨범(FamilyAlbum)에 촬영 날짜(EXIF) 그대로 한 번에 올리는 방법</h3>
+                <p>추천된 사진을 확인한 뒤 하단의 <strong>「앨범 만들기」</strong>를 누르면 Apple 『사진』 앱에 <code>패밀리픽 · …</code> 앨범이 만들어집니다. 안내 창에서 <strong>「패밀리앨범 열기」</strong>를 눌러 해당 앨범을 선택해 업로드하면, 원본 자산의 <strong>촬영 날짜 메타데이터(<code>EXIF DateTimeOriginal</code>)가 100% 그대로 유지</strong>되어 월별·날짜별 타임라인에 정확히 정리됩니다.</p>
+            </div>
+            <div class="faq-item">
+                <h3>3. 지난 임시 후보 앨범 정리하기 — 앨범을 지우면 원본 사진도 삭제되나요?</h3>
+                <p>아니요, <strong>원본 사진은 절대 삭제되지 않습니다.</strong> 앱 내 <strong>「저장된 앨범」</strong> 화면에서 개별 앨범 삭제 또는 지난 임시 후보 앨범 일괄 정리를 실행하면 앨범 목록만 깔끔하게 제거되며 카메라롤(최근 항목)의 원본 사진은 그대로 보존됩니다. 또한 한 번 앨범에 담았던 사진은 임시 앨범을 삭제한 뒤에도 다른 기간 추천에서 자동으로 중복 제외됩니다.</p>
+            </div>
+            <div class="faq-item">
+                <h3>4. 내 선별 기준(학습 가중치)이나 이전 앨범 제외 기록을 초기화하고 싶을 때</h3>
+                <p>앱 내 <strong>설정(Settings)</strong>에서 <strong>「학습 기준 초기화」</strong>(체크 학습 가중치 초기화) 또는 <strong>「이전 앨범 제외 기록 초기화」</strong>(이전에 앨범에 담았던 사진도 다시 추천 후보에 포함)를 각각 언제든 실행할 수 있습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Legal · 약관 및 정책</h2>
+        <ul class="legal-links">
+            <li><a href="privacy.html">개인정보처리방침 (KR)</a></li>
+            <li><a href="privacy-en.html">Privacy Policy (EN)</a></li>
+            <li><a href="terms.html">이용약관 (KR)</a></li>
+            <li><a href="terms-en.html">Terms of Service (EN)</a></li>
+            <li><a href="mailto:privacy@studiotaeo.com">privacy@studiotaeo.com</a></li>
+        </ul>
+        <p class="footer-note">
+            스튜디오 태오 (Studio Taeo) · D-U-N-S® Number: 696528698<br>
+            FamilyAlbum (패밀리앨범), みてね, and 家家相簿 are trademarks of MIXI, Inc. FamilyPick is an independent utility by Studio Taeo.<br>
+            © 2026 Studio Taeo. All rights reserved.
+        </p>
+    </section>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>패밀리픽 (FamilyPick) 개인정보처리방침</title>
+    <meta name="description" content="패밀리픽(FamilyPick) 개인정보처리방침 — 사진·얼굴 특징·취향 학습 100% 기기 내(On-Device) 처리 및 익명 사용성 통계 안내.">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/app-icon.png">
+    <style>
+        :root {
+            --bg: #FFF8F5;
+            --card: #FFFFFF;
+            --text: #1C1814;
+            --muted: #5C5146;
+            --accent: #D94A38;
+            --accent-soft: #FCE8E4;
+            --border: rgba(28, 24, 20, 0.12);
+            --th-bg: #F7EFE8;
+            --code-bg: #F3EAE2;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #121212;
+                --card: #1C1A18;
+                --text: #EAE4DE;
+                --muted: #B0A69B;
+                --accent: #FF7A68;
+                --accent-soft: rgba(217, 74, 56, 0.18);
+                --border: #332E2A;
+                --th-bg: #24201D;
+                --code-bg: #2A2521;
+            }
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.68;
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+            background-color: var(--bg);
+            color: var(--text);
+            word-break: keep-all;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.92rem;
+        }
+        .brand-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .brand-link img { width: 26px; height: 26px; border-radius: 6px; }
+        .lang-switch a {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        h1, h2, h3 { color: var(--text); line-height: 1.3; }
+        h1 { font-size: 1.9rem; margin-bottom: 0.75rem; }
+        h2 { font-size: 1.28rem; margin-top: 2rem; }
+        h3 { font-size: 1.06rem; margin-top: 1.35rem; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        blockquote {
+            margin: 1rem 0 1.5rem;
+            padding: 0.9rem 1.15rem;
+            background: var(--card);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            color: var(--muted);
+        }
+        blockquote p { margin: 0; }
+        .summary-box {
+            background: var(--accent-soft);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.1rem 1.25rem;
+            margin: 1.25rem 0 1.75rem;
+        }
+        .summary-box strong { color: var(--text); }
+        .summary-box ul { margin: 0.5rem 0 0; padding-left: 1.25rem; }
+        table { border-collapse: collapse; width: 100%; margin: 1rem 0 1.75rem; background: var(--card); }
+        th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top; font-size: 0.95rem; }
+        th { background-color: var(--th-bg); font-weight: 700; }
+        code { background-color: var(--code-bg); padding: 2px 6px; border-radius: 5px; font-size: 0.9em; }
+        hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+        .doc-footer { margin-top: 2.5rem; color: var(--muted); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="brand-link" href="/"><img src="assets/app-icon.png" alt="패밀리픽">패밀리픽 (FamilyPick)</a>
+        <div class="lang-switch"><a href="privacy-en.html">English Version →</a></div>
+    </div>
+
+    <h1>패밀리픽 (FamilyPick) 개인정보 처리방침</h1>
+    <blockquote>
+        <p><strong>시행일:</strong> 2026년 11월 19일<br>
+        <strong>최종 수정일:</strong> 2026년 11월 20일</p>
+    </blockquote>
+
+    <div class="summary-box">
+        <strong>핵심 요약 — 두 가지 데이터 처리 원칙의 명확한 구분</strong>
+        <ul>
+            <li><strong>사진 · 얼굴/장면 AI · 개인 취향 학습 (100% 기기 내 처리 · 서버 전송 0건):</strong> 사용자의 사진, 동영상, Apple Vision 얼굴·장면 특징 벡터, 촬영 메타데이터, 파일명·사진 ID 및 체크(<code>✓</code>) 학습 가중치는 오직 사용자의 iPhone/iPad 내부에서만 처리·보관되며 회사(Studio Taeo), Amplitude 또는 어떠한 외부 서버로도 절대 전송되지 않습니다.</li>
+            <li><strong>비식별 제품 상호작용 분석 (Amplitude):</strong> 앱 안정성 측정과 사용성 개선을 위해서만 계정·신원과 연결되지 않은 무작위 익명 기기 ID 기준의 화면 조회 및 기능 실행 횟수(예: 스캔 완료 건수, 앨범 생성 여부 등 사진 내용과 무관한 상호작용 이벤트)를 Amplitude(미국)로 전송합니다. 광고 추적이나 IDFA 수집은 일절 하지 않습니다(<code>NSPrivacyTracking = false</code>).</li>
+        </ul>
+    </div>
+
+    <hr />
+
+    <h2>1. 개요 및 운영 주체</h2>
+    <p>스튜디오 태오(Studio Taeo, D-U-N-S® Number: 696528698, 이하 "회사")가 제공하는 <strong>패밀리픽(FamilyPick, 이하 "앱")</strong>은 사용자의 개인정보와 가족 사진의 프라이버시를 최우선으로 보호합니다. 회사는 대한민국 「개인정보 보호법」(PIPA), 유럽연합 및 영국 일반개인정보보호규정(GDPR / UK GDPR), 미국 캘리포니아 소비자 개인정보 보호법 및 개인정보 권리법(CCPA/CPRA), 일리노이주 생체정보 개인정보보호법(BIPA)을 비롯한 미국 각 주의 생체정보 보호 법령 등 관련 법령을 엄격히 준수합니다.</p>
+    <p>본 개인정보 처리방침은 기기 내부에서만 처리되어 외부로 절대 전송되지 않는 사진·AI 데이터와, 서비스 품질 개선을 위해 최소한으로 수집되는 비식별 제품 상호작용 통계 및 고객지원 문의 정보에 대해 투명하게 안내합니다.</p>
+
+    <hr />
+
+    <h2>2. 처리 및 수집하는 정보의 구분</h2>
+
+    <h3>2.1 기기 내부(On-Device)에서만 처리되는 정보 (서버 수집·전송 없음)</h3>
+    <p>앱은 회원가입이나 로그인 절차 없이 동작합니다. 핵심 기능인 '공유할 만한 아이 사진 추천' 및 '앨범 만들기'를 위한 아래 데이터는 Apple 운영체제 표준 프레임워크(<code>PhotoKit</code>, <code>Vision</code>)를 통해 <strong>오직 사용자의 기기 내부(로컬 앱 샌드박스)에서만 처리·저장되며, 회사 서버나 Amplitude 등 외부로 절대 전송되지 않습니다.</strong></p>
+    <table>
+        <thead>
+            <tr>
+                <th>기기 내 처리 항목</th>
+                <th>로컬 처리 목적</th>
+                <th>외부 서버 전송 여부</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>사진 보관함 이미지·동영상, 로컬 자산 ID, 파일명, 앨범 제목 및 촬영 메타데이터(촬영 일시 <code>EXIF DateTimeOriginal</code>, 해상도 등)</td>
+                <td>지정한 기간 내 사진 후보 분석, 흔들림·유사 연사 판별 및 원본 촬영 날짜가 유지되는 Apple 사진 앨범 생성</td>
+                <td><strong>전송 안 함</strong> (100% 기기 내 처리)</td>
+            </tr>
+            <tr>
+                <td>Apple Vision 기반 얼굴·표정·구도·배경 특징 벡터(Feature Embeddings)</td>
+                <td>기준 사진과의 인물 유사도 비교, 아이 중심 구도 및 어수선한 실내 배경 구분</td>
+                <td><strong>전송 안 함</strong> (100% 기기 내 처리)</td>
+            </tr>
+            <tr>
+                <td>사용자 체크(<code>✓</code>)·제외 학습 모델 가중치 및 이전 앨범 포함 기록(<code>ShareHistory</code>)</td>
+                <td>사용자별 사진 선별 취향 학습 및 이미 다른 패밀리픽 앨범에 담은 사진의 중복 추천 자동 제외</td>
+                <td><strong>전송 안 함</strong> (기기 내 샌드박스·<code>UserDefaults</code>에만 저장)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>2.2 생체정보 보호 법령(미국 BIPA 등) 및 얼굴 특징 데이터 관련 고지</h3>
+    <p>앱은 기기 내 사진 선별 정확도를 높이기 위해 Apple의 온디바이스 <code>Vision</code> 프레임워크가 생성하는 수치화된 시각·얼굴 특징 벡터를 기기 내부에서만 계산하거나 앱의 비공개 로컬 샌드박스에 저장합니다.</p>
+    <ul>
+        <li><strong>회사 미보유·미수집 원칙:</strong> 회사는 어떠한 경우에도 얼굴 기하학 정보, 생체 식별자(Biometric Identifiers) 또는 생체정보(Biometric Information)를 수집, 캡처, 수신, 열람, 보관, 판매, 임대하거나 거래하지 않습니다(미국 일리노이주 BIPA 740 ILCS 14/, 텍사스주 CUBI, 워싱턴주 생체정보법 등 준수).</li>
+        <li><strong>외부 AI 학습 미사용:</strong> 사용자의 사진과 기기 내 특징값은 클라우드나 외부 AI 모델 학습에 절대 사용되지 않습니다.</li>
+        <li><strong>즉시 파기:</strong> 사용자가 앱 내 <strong>설정 &gt; 학습 기준 초기화</strong>를 실행하거나 기기에서 앱을 삭제하면 기기 내 저장된 모든 특징값과 학습 가중치는 즉시 영구 삭제됩니다.</li>
+    </ul>
+
+    <h3>2.3 앱 이용 시 자동 수집되는 비식별 제품 상호작용 정보 (Amplitude)</h3>
+    <p>회사는 앱 오류 진단, 스캔 성능 확인 및 UI 사용성 개선을 위하여 사용자 개인이나 사진 내용과 연결되지 않는 최소한의 비식별 제품 이용 이벤트만을 수집합니다.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>수집 항목</th>
+                <th>수집 목적</th>
+                <th>수집하지 않는 항목 (엄격 배제)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>앱 내부에서 무작위 생성된 익명 설치 식별자(<code>device_id</code> UUID), 세션 ID, 이벤트 중복 방지 ID(<code>insert_id</code>)</td>
+                <td>계정 없이 동작하는 앱의 비식별 세션·사용 흐름 구분</td>
+                <td rowspan="2">사진 이미지·썸네일, Vision 얼굴/장면 특징값, 사진 자산 ID·파일명, EXIF 촬영 날짜, 앨범 이름, 이름·이메일·전화번호, Apple 광고 식별자(IDFA), 정밀 GPS 위치 정보는 <strong>절대 수집·포함하지 않음</strong></td>
+            </tr>
+            <tr>
+                <td>화면 조회 및 기능 상호작용 이벤트(화면 이름, 기간 프리셋 종류, 필터 전환, 스캔 완료·일시정지 건수 및 소요 시간, 후보 체크·해제 횟수, 앨범 생성·삭제 건수, 외부 앱/공유 시트 열기 여부, 설정·초기화 실행 여부), 앱 버전, OS 버전, 기기 모델, 언어 설정, 수신 IP 주소에서 추정된 대략적 국가·지역 정보</td>
+                <td>Amplitude를 통한 앱 안정성 점검 및 기능 사용성 개선</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>2.4 고객지원 이메일 문의 시 수집 정보 (선택적)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>수집 항목</th>
+                <th>수집 목적</th>
+                <th>필수 여부</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>발신 이메일 주소 및 문의 본문 내용 (사용자가 직접 기재한 기기/OS 정보 포함)</td>
+                <td>고객 문의 응대, 오류 확인 및 회신</td>
+                <td>선택 (사용자가 이메일 문의 발송 시에만 수신)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+
+    <h2>3. 개인정보 처리의 목적 및 법적 근거 (GDPR)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>목적</th>
+                <th>설명</th>
+                <th>법적 근거 (GDPR 제6조)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>기기 내 사진 추천 및 앨범 생성</td>
+                <td>사용자 기기 내에서 로컬로 수행되며 회사가 서버로 수집·보관하는 사진 데이터가 없음(사진 보관함 접근은 iOS 시스템 권한에 따름)</td>
+                <td>서비스 제공(계약 이행, 제6조 제1항 b호)</td>
+            </tr>
+            <tr>
+                <td>제품 안정성 및 사용성 개선</td>
+                <td>무작위 익명 ID 기반의 비식별 제품 상호작용 통계 분석(Amplitude)</td>
+                <td>정당한 이익(제6조 제1항 f호)</td>
+            </tr>
+            <tr>
+                <td>고객 문의 응대</td>
+                <td>사용자가 자발적으로 발송한 이메일(<a href="mailto:hello@studiotaeo.com">hello@studiotaeo.com</a>, <a href="mailto:privacy@studiotaeo.com">privacy@studiotaeo.com</a>) 회신 및 지원</td>
+                <td>이용자 요청에 따른 조치 및 정당한 이익(제6조 제1항 b·f호)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+
+    <h2>4. 데이터의 보유 기간, 파기 및 사용자 통제 방법</h2>
+    <ul>
+        <li><strong>기기 내 학습 데이터 및 앨범 기록:</strong> 사용자의 iPhone/iPad 앱 샌드박스 내부에만 보관됩니다. 앱 내 <strong>설정(Settings)</strong> 화면에서 언제든지 <strong>「학습 기준 초기화」</strong> 및 <strong>「이전 앨범 제외 기록 초기화」</strong>를 각각 실행할 수 있으며, 앱을 삭제(Uninstall)하면 모든 로컬 샌드박스 데이터(로컬 익명 분석 식별자 및 미전송 큐 포함)가 즉시 영구 삭제됩니다.</li>
+        <li><strong>Apple 사진 앱의 후보 앨범:</strong> 패밀리픽은 자동으로 앨범을 생성하지 않으며, 사용자가 직접 <strong>「앨범 만들기」</strong> 버튼을 눌렀을 때만 사용자의 Apple 『사진』 앱 내에 앨범을 생성합니다. 생성된 임시 앨범은 앱 내 <strong>「저장된 앨범」</strong> 화면 또는 Apple 『사진』 앱에서 언제든 삭제할 수 있으며, <strong>후보 앨범을 삭제하더라도 카메라롤 원본 사진은 절대 삭제되지 않습니다.</strong></li>
+        <li><strong>사진 보관함 접근 권한 철회:</strong> <strong>iOS 설정 &gt; 앱 &gt; 패밀리픽 &gt; 사진</strong>에서 언제든지 사진 접근 권한을 변경하거나 철회할 수 있습니다.</li>
+        <li><strong>비식별 분석 이벤트(Amplitude):</strong> 앱 삭제 시 기기 내 무작위 <code>device_id</code>가 즉시 소멸하여 이후 재설치 시 이전 기록과 연결되지 않습니다. Amplitude의 표준 데이터 보존 정책에 따라 관리되며, 관련 문의나 삭제·처리 제한 요청은 <a href="mailto:privacy@studiotaeo.com">privacy@studiotaeo.com</a>으로 접수하실 수 있습니다.</li>
+        <li><strong>고객 문의 이메일:</strong> 문의 처리 완료 후 지체 없이 파기하되, 관계 법령에 따라 보존 의무가 있는 경우에 한하여 해당 기간 동안 보관합니다.</li>
+    </ul>
+
+    <hr />
+
+    <h2>5. 개인정보의 제3자 제공, 처리 위탁 및 국외 이전</h2>
+    <p>회사는 사용자의 개인정보를 판매하거나 광고 목적으로 제3자에게 제공하지 않습니다. 비식별 제품 사용성 분석을 위해 아래와 같이 처리를 위탁하고 있습니다.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>수탁업체</th>
+                <th>위탁 업무</th>
+                <th>보관 국가</th>
+                <th>이전 일시 및 방법</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Amplitude, Inc.</td>
+                <td>계정·신원과 연결되지 않은 비식별 제품 상호작용 이벤트 분석(사진·생체 특징 데이터 일절 미포함)</td>
+                <td>미국 (United States)</td>
+                <td>앱 사용 중 무작위 익명 기기 ID, 화면·기능 상호작용 이벤트, 앱·기기 정보 및 IP 기반 대략적 국가/지역 정보를 HTTPS(TLS) 암호화 네트워크로 일괄 전송</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>국외 이전 보호조치 안내:</strong> Amplitude, Inc.는 EU-US 데이터 프라이버시 프레임워크(EU-U.S. Data Privacy Framework) 인증 및 GDPR 표준 계약 조항(SCC) 등 국제 데이터 보호 안전장치를 준수합니다. 사용자의 사진이나 얼굴 특징 데이터는 위 수탁업체로 절대 전송되지 않습니다.</p>
+
+    <hr />
+
+    <h2>6. 쿠키, 추적 기술 및 Apple 개인정보 보호 매니페스트</h2>
+    <ul>
+        <li>패밀리픽 앱과 공식 웹사이트(<code>familypick.studiotaeo.com</code>)는 웹 광고 쿠키, 제3자 광고 네트워크 SDK, Apple 광고 식별자(IDFA) 또는 타사 앱·웹사이트 간 추적(Cross-App Tracking)을 <strong>일절 사용하지 않습니다.</strong></li>
+        <li>Apple 개인정보 보호 매니페스트(<code>PrivacyInfo.xcprivacy</code>) 및 App Store 개인정보 보호 표시 기준:
+            <ul>
+                <li>추적 여부: <code>NSPrivacyTracking = false</code> (추적에 사용되지 않음)</li>
+                <li>수집 데이터 유형: <code>NSPrivacyCollectedDataTypeProductInteraction</code> (사용 데이터 &gt; 제품 상호작용 — <strong>사용자와 연결되지 않음 / 추적에 사용되지 않음</strong>)</li>
+                <li>필수 사유 API: 앱 내부 설정 저장용 기기 내 <code>UserDefaults</code> (<code>CA92.1</code>)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr />
+
+    <h2>7. 이용자의 권리와 행사 방법 (PIPA · GDPR · CCPA/CPRA)</h2>
+    <p>사용자는 기기 내 데이터(학습 가중치, 앨범 제외 기록, 사진 권한)를 앱 설정 및 iOS 설정에서 직접 초기화·철회할 수 있으며, 이메일 문의 기록 및 분석 데이터 처리에 관하여 언제든지 아래 권리를 행사할 수 있습니다.</p>
+    <ul>
+        <li><strong>대한민국 이용자(개인정보 보호법):</strong> 개인정보 열람, 정정·삭제, 처리정지 요구권</li>
+        <li><strong>EU/EEA 및 영국 거주자(GDPR / UK GDPR):</strong> 열람권, 정정권, 삭제권, 처리 제한권, 데이터 이동권, 정당한 이익에 기반한 분석 처리에 대한 이의 제기권 및 관할 감독 기관 민원 제기권</li>
+        <li><strong>미국 캘리포니아 거주자(CCPA/CPRA):</strong> 수집 내역 확인권, 삭제 요청권, 판매·공유 거부권(<em>회사는 개인정보나 민감정보를 판매하거나 행태 맞춤형 광고 목적으로 공유하지 않습니다 — "We Do Not Sell or Share Personal Information"</em>), 차별 금지 권리</li>
+        <li><strong>권리 행사 및 문의 방법:</strong> <a href="mailto:privacy@studiotaeo.com">privacy@studiotaeo.com</a>으로 문의해 주시면 관련 법령이 정한 기한(대한민국 법령 기준 10일 이내, GDPR 등 최대 30일 이내) 내에 신속히 처리해 드립니다.</li>
+    </ul>
+
+    <hr />
+
+    <h2>8. 아동의 개인정보 보호</h2>
+    <p>패밀리픽은 부모 및 성인 보호자가 가족 사진을 정리할 수 있도록 돕는 유틸리티 앱입니다. 회사는 만 14세 미만(대한민국 기준), 만 13세 미만(미국 COPPA 기준) 또는 만 16세 미만(GDPR 등 해당 국가 법정 연령 미만) 아동으로부터 이름, 연락처, 계정 정보나 사진을 서버로 의도적 수집하지 않습니다. 아동의 개인정보가 보호자 동의 없이 이메일 등을 통해 접수된 사실을 알게 된 경우 즉시 해당 정보를 삭제합니다.</p>
+
+    <hr />
+
+    <h2>9. 개인정보의 안전성 확보 조치</h2>
+    <ol>
+        <li><strong>사진·AI 온디바이스 격리 설계:</strong> 사진 원본과 Apple Vision 특징 데이터를 네트워크로 전송하지 않아 사진 유출 위험을 원천 차단합니다.</li>
+        <li><strong>전송 구간 암호화(TLS/HTTPS):</strong> 비식별 상호작용 이벤트 전송 시 업계 표준 TLS/HTTPS 암호화 통신을 적용하며, 정적 타입 검증을 통해 사진 식별자·파일명·개인식별정보(PII)가 이벤트 속성에 포함되지 않도록 기술적으로 차단합니다.</li>
+        <li><strong>iOS 샌드박스 보호 및 접근 통제:</strong> 기기 내 설정과 학습 데이터는 iOS 앱 샌드박스 및 기기 암호화 내에 보호되며, 고객지원 이메일 계정은 다중 인증(MFA)으로 접근을 제한합니다.</li>
+    </ol>
+
+    <hr />
+
+    <h2>10. 개인정보 처리방침의 변경</h2>
+    <p>본 개인정보 처리방침은 법령이나 서비스 변경에 따라 개정될 수 있습니다. 중요한 변경 시 공식 웹사이트(<code>https://familypick.studiotaeo.com</code>) 또는 앱 내 공지를 통해 최소 30일 전에 사전 고지합니다.</p>
+
+    <hr />
+
+    <h2>11. 개인정보 보호책임자 및 문의처</h2>
+    <ul>
+        <li><strong>운영 주체:</strong> 스튜디오 태오 (Studio Taeo) · D-U-N-S® Number: 696528698</li>
+        <li><strong>개인정보 관련 문의:</strong> <a href="mailto:privacy@studiotaeo.com">privacy@studiotaeo.com</a></li>
+        <li><strong>일반 고객지원 문의:</strong> <a href="mailto:hello@studiotaeo.com">hello@studiotaeo.com</a></li>
+    </ul>
+
+    <hr />
+
+    <h2>12. 권익침해 구제 방법 및 감독 기관 안내</h2>
+    <h3>대한민국</h3>
+    <ul>
+        <li>개인정보침해신고센터 (한국인터넷진흥원): (국번없이) 118 · <a href="https://privacy.kisa.or.kr" target="_blank" rel="noopener">https://privacy.kisa.or.kr</a></li>
+        <li>개인정보분쟁조정위원회: 1833-6972 · <a href="https://www.kopico.go.kr" target="_blank" rel="noopener">https://www.kopico.go.kr</a></li>
+        <li>대검찰청 사이버수사과: (국번없이) 1301 · <a href="https://www.spo.go.kr" target="_blank" rel="noopener">https://www.spo.go.kr</a></li>
+        <li>경찰청 사이버범죄 신고시스템: (국번없이) 182 · <a href="https://ecrm.police.go.kr" target="_blank" rel="noopener">https://ecrm.police.go.kr</a></li>
+    </ul>
+    <h3>유럽연합 (EU/EEA) 및 영국</h3>
+    <ul>
+        <li>유럽 데이터보호이사회(EDPB) 회원 기관 목록: <a href="https://edpb.europa.eu/about-edpb/about-edpb/members" target="_blank" rel="noopener">https://edpb.europa.eu/about-edpb/about-edpb/members</a></li>
+        <li>영국 정보위원회(ICO): <a href="https://ico.org.uk" target="_blank" rel="noopener">https://ico.org.uk</a></li>
+    </ul>
+    <h3>미국 (캘리포니아)</h3>
+    <ul>
+        <li>California Attorney General (Privacy): <a href="https://oag.ca.gov/privacy" target="_blank" rel="noopener">https://oag.ca.gov/privacy</a></li>
+        <li>California Privacy Protection Agency (CPPA): <a href="https://cppa.ca.gov" target="_blank" rel="noopener">https://cppa.ca.gov</a></li>
+    </ul>
+
+    <hr />
+    <p class="doc-footer"><em>본 개인정보 처리방침은 2026년 11월 19일부터 시행되며, 2026년 11월 20일에 최종 수정되었습니다.</em><br>
+    © 2026 스튜디오 태오 (Studio Taeo). All rights reserved.</p>
+</body>
+</html>
