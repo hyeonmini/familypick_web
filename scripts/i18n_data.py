@@ -536,7 +536,7 @@ STRINGS = {
         "HERO_DESC": "Zwischen Hunderten Serienbildern und unruhigen Zimmern sammelt FamilyPick zuerst die klaren, lebendigen Momente. Jedes Häkchen (✓) verfeinert deinen Stil — und kein einziges Foto verlässt jemals dein iPhone.",
         "HERO_NOTE": "Lokales Apple Vision · Originales EXIF-Datum · Kostenlos · Kein Konto",
         "HERO_P1_CAP": "14. 11 · Im Park",
-        "HERO_P2_CAP": "16. 11 · Snackpause",
+        "HERO_P2_CAP": "16. 11 · Snack",
         "HERO_P3_CAP": "18. Nov. · Bauklötze",
         "HERO_P4_CAP": "19. Nov. · Spaziergang",
 

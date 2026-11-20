@@ -303,7 +303,7 @@ def build_serif_font_link(lang: str) -> str:
 
 def format_hero_note(note_text: str) -> str:
     parts = [p.strip() for p in note_text.split("·") if p.strip()]
-    return '<span class="hn-dot">·</span>'.join(f'<span class="hn-seg">{p}</span>' for p in parts)
+    return " ".join(f'<span class="hn-seg">{p}</span>' for p in parts)
 
 
 def render_hero_stage(loc: dict, s: dict, persona_map: dict, ss_list: list, prefix: str) -> str:
