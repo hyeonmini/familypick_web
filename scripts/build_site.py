@@ -15,11 +15,6 @@ Outputs:
   - /de-DE/index.html             (de-DE -> personas/eu, screenshots/de-DE)
   - /es-ES/index.html             (es-ES -> personas/eu, screenshots/es-ES)
   - /es-MX/index.html             (es-MX -> personas/eu, screenshots/es-MX)
-
-Usage:
-  python3 scripts/build_site.py
-  python3 scripts/build_site.py --html-only
-  python3 scripts/build_site.py --force
 """
 
 import argparse
@@ -61,9 +56,15 @@ REGIONS = ["kr", "jp", "zh", "en", "eu"]
 CWEBP = shutil.which("cwebp") or ("/opt/homebrew/bin/cwebp" if os.path.exists("/opt/homebrew/bin/cwebp") else None)
 SIPS = shutil.which("sips") or "/usr/bin/sips"
 
+HAND_CHECK_SVG = (
+    '<svg class="pencil-chk" viewBox="0 0 20 20" fill="none" aria-hidden="true">'
+    '<circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.72"/>'
+    '<path d="M6.3 10.3 8.9 12.8 13.8 7.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>'
+    '</svg>'
+)
+
 
 def convert_to_webp_or_jpg(src_path: str, dst_stem_path: str, target_width: int, force: bool = False) -> str:
-    """Convert src_path to <dst_stem_path>.webp (preferred) or .jpg, returning filename."""
     webp_dst = dst_stem_path + ".webp"
     jpg_dst = dst_stem_path + ".jpg"
 
@@ -103,7 +104,6 @@ def ensure_brand_icons(force: bool = False) -> None:
 
 
 def sync_personas(personas_src: str, force: bool = False) -> dict:
-    """Sync and optimize regional persona images into assets/personas/<region>/."""
     resolved = {r: {} for r in REGIONS}
     for region in REGIONS:
         local_dir = os.path.join(ROOT, "assets", "personas", region)
@@ -133,7 +133,6 @@ def sync_personas(personas_src: str, force: bool = False) -> dict:
 
 
 def find_screenshot_sources_for_locale(loc: dict, extra_srcs: list) -> list:
-    """Return up to 4 screenshot file paths [step1, step2, step3, step4] if available."""
     loc_key = loc["dir"] or "ko"
     short_lang = loc["code"].split("-")[0]
     candidate_subfolders = []
@@ -180,7 +179,6 @@ def find_screenshot_sources_for_locale(loc: dict, extra_srcs: list) -> list:
 
 
 def sync_screenshots(extra_srcs: list, force: bool = False) -> dict:
-    """Convert any available per-locale screenshots into assets/screenshots/<locale>/ss-01..04.webp."""
     resolved = {}
     for loc in LOCALES:
         loc_key = loc["dir"] or "ko"
@@ -204,7 +202,6 @@ def sync_screenshots(extra_srcs: list, force: bool = False) -> dict:
 
 
 def ensure_badges(force: bool = False) -> dict:
-    """Ensure localized Apple App Store badges exist in assets/badges/."""
     badges_dir = os.path.join(ROOT, "assets", "badges")
     os.makedirs(badges_dir, exist_ok=True)
 
@@ -286,6 +283,24 @@ def build_lang_dropdown(active_code: str) -> str:
     return "\n".join(items)
 
 
+def build_serif_font_link(lang: str) -> str:
+    families = ["Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400"]
+    if lang == "ko":
+        families.append("Gowun+Batang:wght@400;700")
+    elif lang == "ja":
+        families.append("Shippori+Mincho:wght@400;500")
+    elif lang == "zh-Hans":
+        families.append("Noto+Serif+SC:wght@400;500")
+    elif lang == "zh-Hant":
+        families.append("Noto+Serif+TC:wght@400;500")
+
+    # Always include Noto Sans SC & TC so the language menu renders Chinese glyphs everywhere
+    families.append("Noto+Sans+SC:wght@400;500")
+    families.append("Noto+Sans+TC:wght@400;500")
+    joined = "&family=".join(families)
+    return f'<link href="https://fonts.googleapis.com/css2?family={joined}&display=swap" rel="stylesheet">'
+
+
 def format_hero_note(note_text: str) -> str:
     parts = [p.strip() for p in note_text.split("·") if p.strip()]
     return '<span class="hn-dot">·</span>'.join(f'<span class="hn-seg">{p}</span>' for p in parts)
@@ -301,48 +316,71 @@ def render_hero_stage(loc: dict, s: dict, persona_map: dict, ss_list: list, pref
     p2_alt = html_lib.escape(s["HERO_P2_CAP"], quote=True)
     ss_alt = html_lib.escape(f"{s['BRAND']} — {s['G1_TITLE']}", quote=True)
 
-    return f"""<div class="hero-stage reveal" data-d="1">
-      <div class="stage-halo" aria-hidden="true"></div>
+    return f"""<div class="desk-stage reveal" data-d="1">
+        <div class="mat-sheet" aria-hidden="true"></div>
 
-      <div class="float-print p-left">
-        <div class="fp-img">
-          <img src="{prefix}{p1_rel}" alt="{p1_alt}" width="260" height="260" loading="eager">
-          <span class="fp-pill">♥ {s["HERO_TAG_PICK"]}</span>
+        <figure class="photo-print pr-left">
+          <div class="pp-frame">
+            <img src="{prefix}{p1_rel}" alt="{p1_alt}" width="260" height="260" loading="eager">
+          </div>
+          <figcaption class="pp-note">
+            <span>{s["HERO_P1_CAP"]}</span>
+            {HAND_CHECK_SVG}
+          </figcaption>
+        </figure>
+
+        <div class="device-frame">
+          <img src="{prefix}{ss_hero}" alt="{ss_alt}" width="680" height="1478" loading="eager" fetchpriority="high">
         </div>
-        <div class="fp-cap">{s["HERO_P1_CAP"]}</div>
-      </div>
 
-      <div class="hero-phone">
-        <img src="{prefix}{ss_hero}" alt="{ss_alt}" width="680" height="1478" loading="eager" fetchpriority="high">
-      </div>
+        <figure class="photo-print pr-right">
+          <div class="pp-frame">
+            <img src="{prefix}{p2_rel}" alt="{p2_alt}" width="240" height="240" loading="eager">
+          </div>
+          <figcaption class="pp-note">
+            <span>{s["HERO_P2_CAP"]}</span>
+            {HAND_CHECK_SVG}
+          </figcaption>
+        </figure>
+      </div>"""
 
-      <div class="float-print p-right">
-        <div class="fp-img">
-          <img src="{prefix}{p2_rel}" alt="{p2_alt}" width="240" height="240" loading="eager">
-          <span class="fp-check" aria-hidden="true">✓</span>
-        </div>
-        <div class="fp-cap">{s["HERO_P2_CAP"]}</div>
-      </div>
-    </div>"""
+
+def render_essay_print(loc: dict, s: dict, persona_map: dict, prefix: str) -> str:
+    reg = persona_map.get(loc["region"], {})
+    p3_rel = reg.get("02-play-blocks", "")
+    p3_alt = html_lib.escape(s["HERO_P3_CAP"], quote=True)
+    return f"""<figure class="essay-print">
+            <div class="ep-img"><img src="{prefix}{p3_rel}" alt="{p3_alt}" width="320" height="240" loading="lazy"></div>
+            <figcaption class="ep-cap">{s["HERO_P3_CAP"]}</figcaption>
+          </figure>"""
+
+
+def render_signoff_print(loc: dict, s: dict, persona_map: dict, prefix: str) -> str:
+    reg = persona_map.get(loc["region"], {})
+    p4_rel = reg.get("04-outdoor-walk", "")
+    p4_alt = html_lib.escape(s["HERO_P4_CAP"], quote=True)
+    return f"""<div class="signoff-print" aria-hidden="true">
+            <img src="{prefix}{p4_rel}" alt="{p4_alt}" width="200" height="200" loading="lazy">
+          </div>"""
 
 
 def render_gallery_strip(s: dict, ss_list: list, prefix: str) -> str:
-    cards = ['<div class="screen-strip">']
+    cards = ['<div class="ex-strip">']
     for idx in range(1, 5):
         rel = ss_list[idx - 1] if len(ss_list) >= idx else f"assets/screenshots/ko/ss-0{idx}.webp"
         title = s[f"G{idx}_TITLE"]
         desc = s[f"G{idx}_DESC"]
         alt_text = html_lib.escape(f"{s['BRAND']} — {title}", quote=True)
         cards.append(
-            f"""  <article class="screen-card">
-    <div class="sc-meta">
-      <div class="sc-top">
-        <span class="sc-num">{idx}</span>
+            f"""  <article class="ex-item reveal">
+    <div class="ex-cap">
+      <div class="ex-cap-hd">
+        <span class="num-it">0{idx}</span>
         <h3>{title}</h3>
       </div>
       <p>{desc}</p>
     </div>
-    <div class="mini-phone">
+    <div class="ex-phone">
       <img src="{prefix}{rel}" alt="{alt_text}" width="680" height="1478" loading="lazy">
     </div>
   </article>"""
@@ -374,6 +412,7 @@ def render_locale_page(
     replacements = {
         "%%CANONICAL_URL%%": canonical,
         "%%HREFLANG_LINKS%%": hreflang_html,
+        "%%SERIF_FONT_LINK%%": build_serif_font_link(loc["lang"]),
         "%%HOME_HREF%%": home_href,
         "%%LANG_DROPDOWN%%": build_lang_dropdown(loc["code"]),
         "%%LANGNAME%%": loc["name"],
@@ -384,7 +423,9 @@ def render_locale_page(
         "%%TERMS_FILE%%": terms_file,
         "%%PRIVACY_FILE%%": privacy_file,
         "%%HERO_STAGE%%": render_hero_stage(loc, s, persona_map, ss_list, prefix),
+        "%%ESSAY_PRINT%%": render_essay_print(loc, s, persona_map, prefix),
         "%%GALLERY_STRIP%%": render_gallery_strip(s, ss_list, prefix),
+        "%%SIGNOFF_PRINT%%": render_signoff_print(loc, s, persona_map, prefix),
         "%%HERO_NOTE%%": format_hero_note(s["HERO_NOTE"]),
         "%%P%%": prefix,
     }

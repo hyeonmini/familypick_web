@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FamilyPick — 照你的心意，溫柔挑出值得分享的寶寶照片</title>
-<meta name="description" content="上傳到《家家相簿 - FamilyAlbum》前，學習你的勾選喜好自動挑出寶寶好照片。照片與 AI 100% 本機處理，保留拍攝日期，零照片上傳。">
+<title>FamilyPick — 留給家人的寶寶照片，依你的眼光從容挑好</title>
+<meta name="description" content="上傳到《家家相簿 - FamilyAlbum》前，從數百張連拍中安靜挑出值得珍藏的寶寶表情。照片與 AI 100% iPhone 本機處理，零照片上傳。">
 <link rel="canonical" href="https://familypick.studiotaeo.com/zh-Hant/">
 <link rel="alternate" hreflang="ko" href="https://familypick.studiotaeo.com/">
 <link rel="alternate" hreflang="en-US" href="https://familypick.studiotaeo.com/en/">
@@ -20,13 +20,13 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FamilyPick">
-<meta property="og:title" content="FamilyPick — 照你的心意，溫柔挑出值得分享的寶寶照片">
-<meta property="og:description" content="越用越懂你的挑片眼光，自動精選值得分享的寶寶照片 — 100% iPhone 本機處理。">
+<meta property="og:title" content="FamilyPick — 留給家人的寶寶照片，依你的眼光從容挑好">
+<meta property="og:description" content="留給家人的寶寶照片，依你的眼光從容挑好 — 100% iPhone 本機處理。">
 <meta property="og:image" content="https://familypick.studiotaeo.com/assets/og.png">
 <meta property="og:url" content="https://familypick.studiotaeo.com/zh-Hant/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FFFBF8" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#171311" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F6F1E9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" href="../assets/favicon.png">
 <link rel="apple-touch-icon" href="../assets/app-icon.png">
 
@@ -34,59 +34,47 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Noto+Serif+TC:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #FFFBF8;
-  --bg-soft: #FAF2EC;
-  --card: #FFFFFF;
-  --card-warm: #FDF6F1;
-  --bezel: #F4ECE6;
-  --ink: #241D19;
-  --ink-2: #64574E;
-  --ink-3: #998A7F;
-  --coral: #D94D3A;
-  --coral-deep: #BD3B29;
-  --blush: #FDECE7;
-  --apricot-soft: #FEF2E4;
-  --amber: #D07728;
-  --sand-soft: #F6EDE7;
-  --taupe: #875F50;
-  --line: rgba(110, 72, 54, 0.09);
-  --line-strong: rgba(110, 72, 54, 0.15);
-  --line-coral: rgba(217, 77, 58, 0.18);
-  --nav-bg: rgba(255, 251, 248, 0.84);
-  --closing-bg: linear-gradient(140deg, #FFF5EE 0%, #FDE8DF 100%);
-  --shadow-soft: 0 18px 42px -22px rgba(92, 48, 32, 0.12), 0 2px 8px rgba(92, 48, 32, 0.03);
-  --shadow-stage: 0 32px 68px -24px rgba(92, 48, 32, 0.22), 0 8px 20px -8px rgba(92, 48, 32, 0.08);
+  --paper: #F6F1E9;
+  --paper-deep: #ECE5DA;
+  --print: #FCFBF8;
+  --bezel: #EAE3D9;
+  --ink: #1E1A17;
+  --ink-soft: #595047;
+  --ink-muted: #8A7F73;
+  --vermilion: #C24936;
+  --rule: rgba(30, 26, 23, 0.11);
+  --rule-strong: rgba(30, 26, 23, 0.22);
+  --nav-bg: rgba(246, 241, 233, 0.88);
+  --print-shadow: 0 20px 42px -18px rgba(32, 22, 14, 0.22), 0 2px 6px rgba(32, 22, 14, 0.06);
+  --phone-shadow: 0 34px 70px -26px rgba(32, 22, 14, 0.28), 0 6px 18px -6px rgba(32, 22, 14, 0.08);
+  --serif: 'Newsreader', Georgia, serif;
   --sans: 'Pretendard', 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Noto Sans SC', 'Noto Sans TC', system-ui, sans-serif;
 }
 
+html[lang="ko"] { --serif: 'Gowun Batang', 'Newsreader', serif; }
+html[lang="ja"] { --serif: 'Shippori Mincho', 'Newsreader', serif; }
+html[lang="zh-Hans"] { --serif: 'Noto Serif SC', 'Newsreader', serif; }
+html[lang="zh-Hant"] { --serif: 'Noto Serif TC', 'Newsreader', serif; }
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #171311;
-    --bg-soft: #1E1916;
-    --card: #211B18;
-    --card-warm: #261F1C;
-    --bezel: #2F2622;
-    --ink: #F7F0EA;
-    --ink-2: #C8BBB0;
-    --ink-3: #928378;
-    --coral: #EC6452;
-    --coral-deep: #FF8777;
-    --blush: rgba(236, 100, 82, 0.16);
-    --apricot-soft: rgba(228, 146, 72, 0.15);
-    --amber: #F09B4E;
-    --sand-soft: rgba(196, 158, 140, 0.14);
-    --taupe: #D7B2A3;
-    --line: rgba(255, 240, 230, 0.09);
-    --line-strong: rgba(255, 240, 230, 0.15);
-    --line-coral: rgba(236, 100, 82, 0.26);
-    --nav-bg: rgba(26, 21, 19, 0.82);
-    --closing-bg: linear-gradient(140deg, #251D1A 0%, #2F211D 100%);
-    --shadow-soft: 0 20px 44px -22px rgba(0, 0, 0, 0.55);
-    --shadow-stage: 0 34px 72px -24px rgba(0, 0, 0, 0.72);
+    --paper: #161412;
+    --paper-deep: #1E1B18;
+    --print: #25211E;
+    --bezel: #2C2723;
+    --ink: #EFE9DF;
+    --ink-soft: #B8AEA2;
+    --ink-muted: #857B70;
+    --vermilion: #DF6653;
+    --rule: rgba(239, 233, 223, 0.10);
+    --rule-strong: rgba(239, 233, 223, 0.20);
+    --nav-bg: rgba(22, 20, 18, 0.88);
+    --print-shadow: 0 22px 44px -18px rgba(0, 0, 0, 0.65);
+    --phone-shadow: 0 36px 74px -24px rgba(0, 0, 0, 0.78);
   }
 }
 
@@ -94,11 +82,12 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--sans);
-  background: var(--bg);
+  background: var(--paper);
   color: var(--ink);
-  line-height: 1.65;
+  line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   word-break: keep-all;
 }
 html[lang="ja"] body,
@@ -113,111 +102,118 @@ html[lang="zh-Hans"] body {
 html[lang="zh-Hant"] body {
   font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
-h1, h2, h3 { text-wrap: balance; }
-::selection { background: var(--coral); color: #fff; }
+
+::selection { background: var(--ink); color: var(--paper); }
 a { color: inherit; }
 img { max-width: 100%; display: block; }
 
-/* ---------- Warm Sunlit Ambient Glow ---------- */
-.sunlight {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(56% 42% at 76% 10%, rgba(248, 188, 168, 0.24) 0%, transparent 72%),
-    radial-gradient(50% 38% at 18% 4%, rgba(253, 224, 198, 0.28) 0%, transparent 70%);
-}
-@media (prefers-color-scheme: dark) {
-  .sunlight {
-    background:
-      radial-gradient(56% 42% at 76% 10%, rgba(217, 77, 58, 0.12) 0%, transparent 72%),
-      radial-gradient(50% 38% at 18% 4%, rgba(180, 110, 72, 0.09) 0%, transparent 70%);
-  }
-}
-
 .wrap {
-  max-width: 1060px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
+}
+@media (max-width: 560px) {
+  .wrap { padding: 0 20px; }
 }
 
-/* ---------- Floating Capsule Header ---------- */
-.site-header {
+.num-it {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ---------- Editorial Masthead (No Plastic Capsule) ---------- */
+.masthead {
   position: sticky;
   top: 0;
   z-index: 60;
-  padding: 14px 20px 0;
-}
-.nav-pill {
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 9px 11px 9px 15px;
-  border-radius: 999px;
   background: var(--nav-bg);
-  backdrop-filter: saturate(160%) blur(18px);
-  -webkit-backdrop-filter: saturate(160%) blur(18px);
-  border: 1px solid var(--line);
-  box-shadow: 0 10px 30px -18px rgba(92, 48, 32, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule);
+}
+.mast-in {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 15px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
 }
+@media (max-width: 560px) {
+  .mast-in { padding: 13px 20px; }
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  font-weight: 700;
-  font-size: 17px;
-  letter-spacing: -0.02em;
 }
 .brand-mark {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(217, 77, 58, 0.22);
   flex: none;
+  border: 1px solid var(--rule);
 }
 .brand-mark img { width: 100%; height: 100%; object-fit: cover; }
+.brand-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+html[lang="ko"] .brand-name { font-weight: 700; font-size: 17px; }
+.brand-sub {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  padding-left: 10px;
+  border-left: 1px solid var(--rule-strong);
+  font-weight: 400;
+}
+@media (max-width: 680px) {
+  .brand-sub { display: none; }
+}
 
-.nav-right {
+.mast-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
 }
 .lang { position: relative; }
 .lang-btn {
   font-family: var(--sans);
   font-size: 13px;
-  font-weight: 600;
-  padding: 7px 12px;
-  border-radius: 999px;
+  font-weight: 400;
+  color: var(--ink-soft);
   background: transparent;
-  border: 1px solid var(--line);
-  color: var(--ink-2);
+  border: none;
+  padding: 6px 8px;
+  border-radius: 6px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: background 0.2s ease, color 0.2s ease;
+  gap: 5px;
+  transition: color 0.2s ease, background 0.2s ease;
 }
-.lang-btn:hover { background: var(--bg-soft); color: var(--ink); }
-.lang-btn svg { width: 14px; height: 14px; opacity: 0.72; flex: none; }
+.lang-btn:hover { color: var(--ink); background: rgba(30, 26, 23, 0.04); }
+.lang-btn svg { width: 12px; height: 12px; opacity: 0.65; }
+
 .lang-dropdown {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  background: var(--card);
-  border: 1px solid var(--line-strong);
-  border-radius: 18px;
-  min-width: 196px;
+  background: var(--print);
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  min-width: 188px;
   list-style: none;
   display: none;
   z-index: 100;
-  box-shadow: 0 22px 48px -14px rgba(45, 24, 16, 0.24);
+  box-shadow: 0 20px 44px -14px rgba(28, 20, 14, 0.22);
   padding: 6px;
 }
 .lang-dropdown.show { display: block; }
@@ -225,12 +221,12 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 12px;
-  border-radius: 11px;
+  padding: 7px 11px;
+  border-radius: 5px;
   text-decoration: none;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-soft);
 }
 .lang-dropdown li a[lang="zh-Hans"] {
   font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -241,95 +237,80 @@ img { max-width: 100%; display: block; }
 .lang-dropdown li a[lang="ja"] {
   font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', system-ui, sans-serif;
 }
-.lang-dropdown li a:hover { background: var(--bg-soft); color: var(--ink); }
+.lang-dropdown li a:hover { background: var(--paper); color: var(--ink); }
 .lang-dropdown li a.active {
-  background: var(--blush);
-  color: var(--coral-deep);
-  font-weight: 700;
+  color: var(--ink);
+  font-weight: 600;
+  background: var(--paper-deep);
 }
 
-.nav-cta {
+.mast-cta {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 15px;
+  gap: 5px;
+  padding: 7px 15px;
   border-radius: 999px;
-  background: var(--coral);
-  color: #fff;
+  background: var(--ink);
+  color: var(--paper);
   text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  box-shadow: 0 6px 16px -6px rgba(217, 77, 58, 0.45);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
-.nav-cta:hover { transform: translateY(-1px); opacity: 0.94; }
-.nav-cta svg { width: 13px; height: 13px; fill: currentColor; flex: none; }
+.mast-cta:hover { opacity: 0.86; transform: translateY(-1px); }
 
-@media (max-width: 480px) {
-  .site-header { padding: 10px 14px 0; }
-  .nav-pill { padding: 8px 9px 8px 13px; }
-  .brand { font-size: 15.5px; gap: 8px; }
-  .lang-btn { padding: 6px 10px; font-size: 12.5px; }
-  .nav-cta { padding: 7px 12px; font-size: 12.5px; }
-}
-
-/* ---------- Soft Reveal ---------- */
+/* ---------- Subtle Editorial Reveal ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(14px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.in { opacity: 1; transform: none; }
-.reveal[data-d="1"] { transition-delay: 0.06s; }
-.reveal[data-d="2"] { transition-delay: 0.12s; }
+.reveal[data-d="1"] { transition-delay: 0.07s; }
+.reveal[data-d="2"] { transition-delay: 0.14s; }
 
-/* ---------- Editorial 2-Column Hero ---------- */
+/* ---------- Editorial Hero Spread ---------- */
 .hero {
-  padding: 52px 0 64px;
+  padding: clamp(48px, 7vw, 88px) 0 clamp(56px, 7vw, 92px);
   display: grid;
-  grid-template-columns: 1.06fr 0.94fr;
-  gap: clamp(32px, 5vw, 58px);
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: clamp(36px, 5.5vw, 72px);
   align-items: center;
 }
-@media (max-width: 880px) {
+@media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
-    text-align: center;
-    padding: 36px 0 48px;
-    gap: 38px;
+    gap: 48px;
+    padding: 40px 0 60px;
   }
 }
 
-.eyebrow {
+.overline {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 12px;
   font-size: 13px;
-  font-weight: 600;
-  color: var(--coral-deep);
-  background: var(--blush);
-  padding: 6px 14px;
-  border-radius: 999px;
+  font-weight: 400;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
 }
-.eyebrow-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--coral);
+.overline::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--ink-muted);
+  opacity: 0.65;
 }
 
 .hero h1 {
-  font-size: clamp(30px, 3.9vw, 46px);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-  margin-top: 18px;
-}
-html[lang="ja"] .hero h1 {
-  font-size: clamp(27px, 3.1vw, 37px);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(32px, 4.1vw, 48px);
+  line-height: 1.34;
   letter-spacing: -0.02em;
-  word-break: auto-phrase;
+  color: var(--ink);
+  margin-top: 20px;
 }
 html[lang="en-US"] .hero h1,
 html[lang="en-GB"] .hero h1,
@@ -337,547 +318,587 @@ html[lang="fr"] .hero h1,
 html[lang="de"] .hero h1,
 html[lang="es"] .hero h1,
 html[lang="es-MX"] .hero h1 {
-  font-size: clamp(29px, 3.5vw, 42px);
+  font-size: clamp(30px, 3.55vw, 43px);
+  line-height: 1.18;
+  letter-spacing: -0.022em;
 }
-.hero h1 .accent {
-  color: var(--coral);
+html[lang="ja"] .hero h1 {
+  font-size: clamp(27px, 3.3vw, 39px);
+  line-height: 1.44;
+  letter-spacing: 0.01em;
+}
+html[lang="zh-Hans"] .hero h1,
+html[lang="zh-Hant"] .hero h1 {
+  font-size: clamp(30px, 3.7vw, 44px);
+  line-height: 1.38;
+}
+
+/* Hand-sketched vermilion pencil mark — NOT colored AI text */
+.hero h1 em.ink-mark {
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+  color: var(--ink);
+}
+html[lang="ko"] .hero h1 em.ink-mark,
+html[lang="ja"] .hero h1 em.ink-mark,
+html[lang="zh-Hans"] .hero h1 em.ink-mark,
+html[lang="zh-Hant"] .hero h1 em.ink-mark {
+  font-style: normal;
+}
+.hero h1 em.ink-mark::after {
+  content: "";
+  position: absolute;
+  left: -1%;
+  right: -1%;
+  bottom: 0.02em;
+  height: 0.22em;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8.5 C 58 3.2, 152 2.6, 217 7.2' fill='none' stroke='%23C24936' stroke-width='2.4' stroke-linecap='round' stroke-opacity='0.82'/%3E%3C/svg%3E");
 }
 
 .hero-desc {
-  font-size: clamp(15.5px, 1.45vw, 17.5px);
-  color: var(--ink-2);
-  line-height: 1.72;
-  margin-top: 18px;
-  max-width: 31rem;
+  margin-top: 24px;
+  font-size: clamp(15.5px, 1.4vw, 17px);
+  line-height: 1.82;
+  color: var(--ink-soft);
+  max-width: 30.5rem;
   font-weight: 400;
 }
-@media (max-width: 880px) {
-  .hero-desc { margin-inline: auto; }
-}
 
-.hero-actions {
-  margin-top: 28px;
+.hero-cta-row {
+  margin-top: 32px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 20px;
   flex-wrap: wrap;
 }
-@media (max-width: 880px) {
-  .hero-actions { justify-content: center; }
-}
-
 .store-badge {
   display: inline-block;
   line-height: 0;
-  border-radius: 11px;
-  transition: transform 0.22s ease, filter 0.22s ease;
+  transition: transform 0.22s ease, opacity 0.22s ease;
 }
-.store-badge:hover {
-  transform: translateY(-2px);
-  filter: drop-shadow(0 10px 20px rgba(60, 30, 18, 0.16));
-}
-.store-badge img {
-  height: 48px;
-  width: auto;
-}
+.store-badge:hover { transform: translateY(-1px); opacity: 0.92; }
+.store-badge img { height: 46px; width: auto; }
 
-.qr-inline {
+.qr-quiet {
   display: none;
   align-items: center;
-  gap: 10px;
-  padding: 6px 13px 6px 7px;
-  border-radius: 14px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-soft);
-  text-align: left;
+  gap: 11px;
+  padding-left: 20px;
+  border-left: 1px solid var(--rule-strong);
 }
-body.is-pc .qr-inline { display: inline-flex; }
-@media (max-width: 880px) {
-  body.is-pc .qr-inline { display: none; }
+body.is-pc .qr-quiet { display: inline-flex; }
+@media (max-width: 900px) {
+  body.is-pc .qr-quiet { display: none; }
 }
-.qr-inline img {
+.qr-quiet img {
   width: 44px;
   height: 44px;
-  border-radius: 5px;
+  padding: 3px;
   background: #fff;
-  padding: 2px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
 }
-.qr-inline span {
+.qr-quiet span {
   font-size: 11.5px;
-  font-weight: 500;
-  line-height: 1.42;
-  color: var(--ink-2);
+  line-height: 1.45;
+  color: var(--ink-muted);
 }
 
-.hero-note {
-  margin-top: 18px;
-  font-size: 13px;
-  color: var(--ink-3);
-  font-weight: 500;
-  text-wrap: balance;
+.hero-footnote {
+  margin-top: 26px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  max-width: 30.5rem;
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  line-height: 1.6;
 }
-.hn-seg {
-  white-space: nowrap;
-}
-.hn-dot {
-  margin: 0 5px;
-  opacity: 0.65;
-}
+.hn-seg { white-space: nowrap; }
+.hn-dot { margin: 0 6px; opacity: 0.55; }
 
-/* ---------- Hero Sunlit Photo + Phone Centerpiece ---------- */
-.hero-stage {
+/* ---------- Tactile Darkroom Prints + iPhone Desk Composition ---------- */
+.desk-stage {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px 32px;
-  max-width: 460px;
+  padding: 16px 34px;
+  max-width: 470px;
   margin: 0 auto;
   width: 100%;
 }
-.stage-halo {
+.mat-sheet {
   position: absolute;
-  width: 340px;
-  height: 340px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(244, 168, 144, 0.34) 0%, rgba(253, 224, 200, 0.22) 48%, transparent 72%);
-  filter: blur(22px);
+  inset: 28px 34px 28px 46px;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  transform: rotate(2deg);
   z-index: 0;
   pointer-events: none;
 }
-.hero-phone {
+
+.device-frame {
   position: relative;
   z-index: 2;
-  width: clamp(232px, 25vw, 272px);
-  padding: 7px;
-  border-radius: 38px;
+  width: clamp(232px, 24.5vw, 268px);
+  padding: 6px;
+  border-radius: 37px;
   background: var(--bezel);
-  border: 1px solid var(--line-strong);
-  box-shadow: var(--shadow-stage);
+  border: 1px solid var(--rule-strong);
+  box-shadow: var(--phone-shadow);
 }
-.hero-phone img {
+.device-frame img {
   width: 100%;
   height: auto;
   border-radius: 31px;
 }
 
-.float-print {
+/* Physical Matte Darkroom Prints (Crisp 3px paper corners, wide bottom margin) */
+.photo-print {
   position: absolute;
   z-index: 3;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 7px 7px 9px;
-  box-shadow: 0 18px 36px -16px rgba(72, 36, 22, 0.22);
-  transition: transform 0.35s ease;
+  background: var(--print);
+  border: 1px solid rgba(30, 26, 23, 0.10);
+  border-radius: 3px;
+  padding: 8px 8px 13px;
+  box-shadow: var(--print-shadow);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.float-print .fp-img {
+.photo-print .pp-frame {
   position: relative;
   aspect-ratio: 1 / 1;
-  border-radius: 12px;
   overflow: hidden;
-  background: var(--bg-soft);
+  background: var(--paper-deep);
 }
-.float-print .fp-img img {
+.photo-print .pp-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.float-print .fp-cap {
-  margin-top: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink-2);
-  text-align: center;
+.photo-print .pp-note {
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--ink-muted);
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+.photo-print .pp-note span {
+  min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.fp-pill {
-  position: absolute;
-  left: 6px;
-  bottom: 6px;
-  background: rgba(217, 77, 58, 0.92);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-}
-.fp-check {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--coral);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 800;
-  display: grid;
-  place-items: center;
-  border: 2px solid #fff;
-  box-shadow: 0 4px 10px rgba(217, 77, 58, 0.35);
+/* Hand-drawn grease-pencil check mark on print */
+.pencil-chk {
+  width: 15px;
+  height: 15px;
+  color: var(--vermilion);
+  flex: none;
 }
 
-.float-print.p-left {
-  width: 132px;
+.photo-print.pr-left {
+  width: 138px;
   left: -4px;
-  bottom: 34px;
-  transform: rotate(-6deg);
+  bottom: 28px;
+  transform: rotate(-4.5deg);
 }
-.float-print.p-left:hover { transform: rotate(-2deg) translateY(-3px); }
+.photo-print.pr-left:hover { transform: rotate(-1.5deg) translateY(-3px); }
 
-.float-print.p-right {
-  width: 120px;
+.photo-print.pr-right {
+  width: 122px;
   right: -2px;
-  top: 34px;
-  transform: rotate(5.5deg);
+  top: 28px;
+  transform: rotate(5deg);
 }
-.float-print.p-right:hover { transform: rotate(2deg) translateY(-3px); }
+.photo-print.pr-right:hover { transform: rotate(2deg) translateY(-3px); }
 
 @media (max-width: 520px) {
-  .hero-stage { padding: 8px 18px; }
-  .hero-phone { width: 224px; border-radius: 34px; padding: 6px; }
-  .hero-phone img { border-radius: 28px; }
-  .float-print.p-left { width: 102px; left: 0; bottom: 22px; padding: 5px 5px 7px; border-radius: 14px; }
-  .float-print.p-right { width: 96px; right: 0; top: 22px; padding: 5px 5px 7px; border-radius: 14px; }
-  .float-print .fp-img { border-radius: 9px; }
-  .float-print .fp-cap { font-size: 10px; margin-top: 4px; }
+  .desk-stage { padding: 8px 16px; }
+  .device-frame { width: 220px; border-radius: 34px; padding: 5px; }
+  .device-frame img { border-radius: 29px; }
+  .photo-print.pr-left { width: 104px; left: 0; bottom: 18px; padding: 6px 6px 10px; }
+  .photo-print.pr-right { width: 96px; right: 0; top: 18px; padding: 6px 6px 10px; }
+  .photo-print .pp-note { font-size: 9px; margin-top: 6px; }
 }
 
-/* ---------- Section Heading ---------- */
-.sec-head {
-  text-align: center;
-  margin-bottom: 34px;
-}
-.sec-head h2 {
-  font-size: clamp(24px, 3.1vw, 34px);
-  font-weight: 700;
-  letter-spacing: -0.028em;
-  line-height: 1.25;
-}
-.sec-head p {
-  margin: 10px auto 0;
-  font-size: clamp(15px, 1.4vw, 16.5px);
-  color: var(--ink-2);
-  max-width: 36rem;
-  text-wrap: balance;
+/* ---------- Running Section Rule ---------- */
+.sec-bar {
+  border-top: 1px solid var(--rule-strong);
+  padding-top: 14px;
+  margin-bottom: clamp(34px, 4.5vw, 52px);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
 }
 
-/* ---------- 3-Card Warm Bento ---------- */
-.bento-sec {
-  padding: 44px 0 56px;
+/* ---------- Chapter I: Asymmetric 5fr / 7fr Editorial Essay ---------- */
+.essay-sec {
+  padding: 28px 0 clamp(68px, 8vw, 108px);
 }
-.bento-grid {
+.essay-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(36px, 6vw, 84px);
+  align-items: start;
 }
-@media (max-width: 840px) {
-  .bento-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; gap: 16px; }
+@media (max-width: 860px) {
+  .essay-grid { grid-template-columns: 1fr; gap: 36px; }
 }
 
-.bento-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 26px;
-  padding: 28px 26px;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.25s ease;
+.essay-lead {
+  position: sticky;
+  top: 88px;
 }
-.bento-card:hover { transform: translateY(-2px); }
-
-.bento-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
+@media (max-width: 860px) {
+  .essay-lead { position: static; }
 }
-.bento-icon svg { width: 22px; height: 22px; }
-.bento-icon.ic-coral { background: var(--blush); color: var(--coral); }
-.bento-icon.ic-amber { background: var(--apricot-soft); color: var(--amber); }
-.bento-icon.ic-taupe { background: var(--sand-soft); color: var(--taupe); }
-
-.bento-card h3 {
-  font-size: 18.5px;
-  font-weight: 700;
+.essay-lead h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 35px);
+  line-height: 1.36;
   letter-spacing: -0.02em;
-  margin-top: 18px;
-  line-height: 1.32;
 }
-.bento-card p {
-  font-size: 14.8px;
-  color: var(--ink-2);
-  line-height: 1.68;
-  margin-top: 9px;
+html[lang="en-US"] .essay-lead h2,
+html[lang="en-GB"] .essay-lead h2,
+html[lang="fr"] .essay-lead h2,
+html[lang="de"] .essay-lead h2,
+html[lang="es"] .essay-lead h2,
+html[lang="es-MX"] .essay-lead h2 {
+  line-height: 1.2;
+}
+.essay-lead p {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.78;
+  color: var(--ink-soft);
+  max-width: 24rem;
+}
+.essay-print {
+  margin-top: 34px;
+  width: 178px;
+  background: var(--print);
+  border: 1px solid rgba(30, 26, 23, 0.10);
+  border-radius: 3px;
+  padding: 8px 8px 13px;
+  box-shadow: var(--print-shadow);
+  transform: rotate(-2deg);
+}
+.essay-print .ep-img {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+.essay-print .ep-img img { width: 100%; height: 100%; object-fit: cover; }
+.essay-print .ep-cap {
+  margin-top: 8px;
+  font-size: 10.5px;
+  color: var(--ink-muted);
+}
+@media (max-width: 860px) {
+  .essay-print { display: none; }
 }
 
-/* ---------- 4-Screen App Preview Strip ---------- */
-.gallery-sec {
-  padding: 52px 0;
+.notes-list {
+  border-top: 1px solid var(--rule);
 }
-.gallery-shell {
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  border-radius: 34px;
-  padding: clamp(32px, 4.5vw, 50px) clamp(20px, 3.5vw, 38px);
+.note-item {
+  border-bottom: 1px solid var(--rule);
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 12px;
+  align-items: baseline;
 }
-.screen-strip {
+.note-num {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-size: 21px;
+  color: var(--vermilion);
+}
+.note-body h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(19px, 2vw, 22px);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+.note-body p {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.78;
+  color: var(--ink-soft);
+  max-width: 34rem;
+}
+
+/* ---------- Chapter II: Staggered Contact-Sheet Exhibition on Oatmeal Linen ---------- */
+.linen-band {
+  background: var(--paper-deep);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: clamp(60px, 7vw, 88px) 0 clamp(68px, 8vw, 108px);
+}
+.ex-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+.ex-head h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(25px, 3vw, 34px);
+  line-height: 1.32;
+  letter-spacing: -0.02em;
+}
+.ex-head p {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  max-width: 24rem;
+  line-height: 1.7;
+}
+
+.ex-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  gap: 26px;
+  align-items: start;
+}
+@media (min-width: 961px) {
+  .ex-item:nth-child(even) {
+    margin-top: 38px;
+  }
 }
 @media (max-width: 960px) and (min-width: 641px) {
-  .screen-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .ex-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
 }
 @media (max-width: 640px) {
-  .screen-strip {
+  .ex-strip {
     grid-template-columns: none;
     grid-auto-flow: column;
     grid-auto-columns: 76%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 6px;
+    padding-bottom: 8px;
     scrollbar-width: none;
+    gap: 18px;
   }
-  .screen-strip::-webkit-scrollbar { display: none; }
-  .screen-card { scroll-snap-align: center; }
+  .ex-strip::-webkit-scrollbar { display: none; }
+  .ex-item { scroll-snap-align: start; }
 }
 
-.screen-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 18px 16px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 14px;
-  box-shadow: var(--shadow-soft);
+.ex-cap {
+  border-top: 1px solid var(--rule-strong);
+  padding-top: 12px;
+  margin-bottom: 16px;
 }
-.sc-meta {
+.ex-cap-hd {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.sc-top {
-  display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
 }
-.sc-num {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--blush);
-  color: var(--coral-deep);
-  font-size: 12px;
-  font-weight: 700;
-  display: grid;
-  place-items: center;
-  flex: none;
+.ex-cap-hd .num-it {
+  font-size: 16px;
+  color: var(--vermilion);
 }
-.sc-top h3 {
-  font-size: 15.5px;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  line-height: 1.3;
+.ex-cap-hd h3 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
-.sc-meta p {
+.ex-cap p {
+  margin-top: 3px;
   font-size: 13px;
-  color: var(--ink-2);
+  color: var(--ink-muted);
   line-height: 1.5;
-  padding-left: 30px;
 }
-.mini-phone {
+
+.ex-phone {
   padding: 5px;
-  border-radius: 23px;
-  background: var(--bezel);
-  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: var(--print);
+  border: 1px solid var(--rule-strong);
+  box-shadow: 0 22px 44px -24px rgba(32, 22, 14, 0.24);
 }
-.mini-phone img {
+.ex-phone img {
   width: 100%;
   height: auto;
-  border-radius: 18px;
+  border-radius: 21px;
 }
 
-/* ---------- Calm Warm On-Device Privacy Card ---------- */
-.privacy-sec {
-  padding: 28px 0 36px;
+/* ---------- Chapter III: 2-Column Archival Ledger (Privacy + Q&A) ---------- */
+.ledger-sec {
+  padding: clamp(64px, 8vw, 104px) 0 clamp(56px, 7vw, 88px);
 }
-.privacy-card {
-  background: linear-gradient(135deg, var(--card) 0%, var(--card-warm) 100%);
-  border: 1px solid var(--line-coral);
-  border-radius: 30px;
-  padding: clamp(26px, 4vw, 40px);
-  box-shadow: var(--shadow-soft);
+.ledger-grid {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 24px;
+  grid-template-columns: 0.96fr 1.04fr;
+  gap: clamp(44px, 6.5vw, 88px);
   align-items: start;
 }
-@media (max-width: 680px) {
-  .privacy-card { grid-template-columns: 1fr; gap: 16px; }
+@media (max-width: 860px) {
+  .ledger-grid { grid-template-columns: 1fr; gap: 56px; }
 }
-.priv-emblem {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background: var(--blush);
-  color: var(--coral);
-  display: grid;
-  place-items: center;
-}
-.priv-emblem svg { width: 26px; height: 26px; }
 
-.priv-body h2 {
-  font-size: clamp(20px, 2.5vw, 25px);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.3;
+.priv-col h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(24px, 2.8vw, 32px);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
 }
-.priv-body p {
-  margin-top: 9px;
-  font-size: 15px;
-  color: var(--ink-2);
-  line-height: 1.7;
-  max-width: 46rem;
-}
-.priv-pills {
+.priv-col > p {
   margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+.spec-dl {
+  margin-top: 26px;
+  border-top: 1px solid var(--rule-strong);
+}
+.spec-row {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
 }
-.priv-pill {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--ink-2);
-  background: var(--bg);
-  border: 1px solid var(--line);
-  padding: 5px 12px;
-  border-radius: 999px;
-}
-.priv-link {
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--coral);
-  text-decoration: none;
-}
-.priv-link:hover { text-decoration: underline; }
+.spec-row dt { color: var(--ink-soft); font-weight: 400; }
+.spec-row dd { color: var(--ink); font-weight: 600; }
 
-/* ---------- Minimal 3-Question Hairline FAQ ---------- */
-.faq-sec {
-  max-width: 740px;
-  margin: 44px auto 0;
-  padding-bottom: 16px;
+.text-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 13.5px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--rule-strong);
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
 }
-.faq-sec h2 {
-  text-align: center;
-  font-size: clamp(21px, 2.6vw, 26px);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  margin-bottom: 18px;
+.text-link:hover {
+  color: var(--vermilion);
+  text-decoration-color: var(--vermilion);
 }
+
 .faq-list {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--rule-strong);
 }
 details.faq-row {
-  border-bottom: 1px solid var(--line);
-  padding: 18px 4px;
+  border-bottom: 1px solid var(--rule);
+  padding: 20px 0;
 }
 details.faq-row summary {
   list-style: none;
   cursor: pointer;
   font-size: 15.5px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+details.faq-row summary::-webkit-details-marker { display: none; }
+details.faq-row summary .faq-mark {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ink-muted);
+  flex: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+details.faq-row[open] summary .faq-mark {
+  transform: rotate(45deg);
+  color: var(--vermilion);
+}
+details.faq-row p {
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.76;
+  color: var(--ink-soft);
+  padding-right: 22px;
+}
+
+/* ---------- Closing Postcard Sign-Off & Colophon ---------- */
+.signoff-sec {
+  padding-bottom: 64px;
+}
+.signoff-inner {
+  border-top: 1px solid var(--rule-strong);
+  padding-top: clamp(48px, 6vw, 72px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 36px;
+  flex-wrap: wrap;
 }
-details.faq-row summary::-webkit-details-marker { display: none; }
-details.faq-row summary svg {
-  width: 18px;
-  height: 18px;
-  color: var(--ink-3);
-  flex: none;
-  transition: transform 0.22s ease, color 0.22s ease;
-}
-details.faq-row[open] summary svg {
-  transform: rotate(180deg);
-  color: var(--coral);
-}
-details.faq-row p {
-  margin-top: 10px;
-  font-size: 14.5px;
-  color: var(--ink-2);
-  line-height: 1.68;
-  padding-right: 24px;
-}
-
-/* ---------- Warm Sunlit Closing Card ---------- */
-.closing-sec {
-  padding: 52px 0 56px;
-}
-.closing-card {
-  background: var(--closing-bg);
-  border: 1px solid var(--line-coral);
-  border-radius: 34px;
-  padding: clamp(38px, 5vw, 56px) 24px;
-  text-align: center;
-  box-shadow: var(--shadow-soft);
-}
-.closing-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 15px;
-  margin: 0 auto 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 24px -8px rgba(217, 77, 58, 0.35);
-}
-.closing-icon img { width: 100%; height: 100%; object-fit: cover; }
-.closing-card h2 {
-  font-size: clamp(23px, 3.2vw, 33px);
-  font-weight: 700;
-  letter-spacing: -0.028em;
-  line-height: 1.26;
-  max-width: 26ch;
-  margin: 0 auto;
-}
-.closing-card p {
-  margin: 10px auto 0;
-  font-size: 15.5px;
-  color: var(--ink-2);
-  max-width: 32rem;
-}
-.closing-actions {
-  margin-top: 26px;
+.signoff-left {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 14px;
+  gap: 26px;
+}
+@media (max-width: 620px) {
+  .signoff-left { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+.signoff-print {
+  width: 96px;
+  background: var(--print);
+  border: 1px solid rgba(30, 26, 23, 0.10);
+  border-radius: 3px;
+  padding: 6px 6px 14px;
+  box-shadow: var(--print-shadow);
+  transform: rotate(-3.5deg);
+  flex: none;
+}
+.signoff-print img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.signoff-copy h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(23px, 2.9vw, 32px);
+  line-height: 1.34;
+  letter-spacing: -0.02em;
+}
+.signoff-copy p {
+  margin-top: 8px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.signoff-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
-/* ---------- Airy Warm Linen Footer ---------- */
 footer {
-  border-top: 1px solid var(--line);
-  padding: 32px 0 48px;
-  color: var(--ink-3);
-  font-size: 13px;
+  border-top: 1px solid var(--rule);
+  padding: 28px 0 46px;
+  color: var(--ink-muted);
+  font-size: 12.5px;
 }
 .foot-in {
   display: flex;
@@ -886,13 +907,13 @@ footer {
   gap: 24px;
   flex-wrap: wrap;
 }
-.foot-brand b {
-  color: var(--ink-2);
-  font-weight: 600;
+.foot-brand strong {
+  color: var(--ink-soft);
+  font-weight: 500;
 }
 .foot-tm {
-  margin-top: 6px;
-  font-size: 12px;
+  margin-top: 5px;
+  font-size: 11.5px;
   line-height: 1.55;
   max-width: 540px;
 }
@@ -903,13 +924,13 @@ footer {
   align-items: center;
 }
 .foot-links a {
-  color: var(--ink-2);
+  color: var(--ink-soft);
   text-decoration: none;
-  font-weight: 500;
 }
 .foot-links a:hover {
-  color: var(--coral);
+  color: var(--ink);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -919,20 +940,19 @@ footer {
 </style>
 </head>
 <body>
-<div class="sunlight" aria-hidden="true"></div>
 
-<header class="site-header">
-  <nav class="nav-pill" aria-label="Primary">
+<header class="masthead">
+  <nav class="mast-in" aria-label="Primary">
     <a class="brand" href="/zh-Hant/">
-      <span class="brand-mark"><img src="../assets/app-icon.png" alt="FamilyPick" width="30" height="30"></span>
-      <span>FamilyPick</span>
+      <span class="brand-mark"><img src="../assets/app-icon.png" alt="FamilyPick" width="26" height="26"></span>
+      <span class="brand-name">FamilyPick</span>
+      <span class="brand-sub">iPhone 本機家庭照片挑選工具</span>
     </a>
-    <div class="nav-right">
+    <div class="mast-right">
       <div class="lang">
         <button class="lang-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a14.5 14.5 0 0 1 0 18M12 3a14.5 14.5 0 0 0 0 18"/></svg>
           <span>繁體中文</span>
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 8l4 4 4-4"/></svg>
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5.5 7.5 10 12l4.5-4.5"/></svg>
         </button>
         <ul class="lang-dropdown" role="listbox">
   <li role="option"><a href="/" lang="ko"><span>한국어</span></a></li>
@@ -947,225 +967,253 @@ footer {
   <li role="option"><a href="/es-MX/" lang="es-MX"><span>Español (México)</span></a></li>
 </ul>
       </div>
-      <a class="nav-cta" href="https://apps.apple.com/app/id6821799835" target="_blank" rel="noopener">
-        <svg viewBox="0 0 170 170" aria-hidden="true"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.13-1.9-14.34-6.08-3.69-3.03-7.61-7.81-11.77-14.34-5.03-7.88-9.16-16.94-12.41-27.19-3.47-11.08-5.2-21.66-5.2-31.76 0-11.73 2.96-21.85 8.89-30.35 5.93-8.5 13.59-12.92 22.98-13.25 4.58 0 9.84 1.38 15.77 4.11 5.92 2.74 9.73 4.15 11.41 4.24 1.34 0 5.54-1.64 12.58-4.91 7.05-3.27 12.97-4.66 17.78-4.18 13.08 1.06 22.92 6.21 29.52 15.44-11.74 7.12-17.5 17.07-17.28 29.85.22 9.95 3.94 18.23 11.15 24.83 5.03 4.69 10.96 7.49 17.78 8.39-1.42 4.35-2.99 8.53-4.72 12.52zM119.22 31.01c0 7.81-2.86 15.08-8.57 21.8-6.89 8.04-15.22 12.69-24.28 11.95-.12-.95-.19-1.95-.19-3.01 0-7.5 3.26-15.51 9.06-22.07 2.89-3.32 6.57-6.08 11.03-8.28 4.46-2.19 8.69-3.41 12.69-3.63.17 1.12.26 2.2.26 3.24z"/></svg>
+      <a class="mast-cta" href="https://apps.apple.com/app/id6821799835" target="_blank" rel="noopener">
         <span>App Store</span>
+        <span aria-hidden="true">↗</span>
       </a>
     </div>
   </nav>
 </header>
 
-<main class="wrap">
+<main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-copy">
-      <span class="eyebrow reveal"><span class="eyebrow-dot" aria-hidden="true"></span>為《家家相簿》與家人分享打造的溫柔挑片好幫手</span>
-      <h1 class="reveal" data-d="1">值得分享的寶寶照片，<br><span class="accent">照你的心意挑好。</span></h1>
-      <p class="hero-desc reveal" data-d="2">不必再從幾百張連拍與雜亂背景中慢慢滑。每次勾選（✓）都會學習你的喜好，所有照片 100% 留在你的 iPhone 裡絕不外傳。</p>
+  <!-- EDITORIAL HERO SPREAD -->
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="overline reveal">上傳《家家相簿》與家人分享之前</p>
+        <h1 class="reveal" data-d="1">留給家人的寶寶照片，<br>依<em class="ink-mark">你的眼光</em>從容挑好。</h1>
+        <p class="hero-desc reveal" data-d="2">跨過幾百張連拍與凌亂的客廳背景，先把神情自然的好照片輕輕挑出來。每一次勾選（✓）都在學習你家偏愛的畫面，所有照片始終只留在你的 iPhone 裡。</p>
 
-      <div class="hero-actions reveal" data-d="2">
-        <a class="store-badge" href="https://apps.apple.com/app/id6821799835" target="_blank" rel="noopener">
-          <picture>
-            <source srcset="../assets/badges/zh-tw-white.svg" media="(prefers-color-scheme: dark)">
-            <img src="../assets/badges/zh-tw-black.svg" alt="於 App Store 下載" height="48">
-          </picture>
-        </a>
-        <div class="qr-inline">
-          <img src="../assets/qr-appstore.svg" alt="App Store QR" width="44" height="44">
-          <span>用 iPhone 相機掃描<br>立即前往 App Store</span>
+        <div class="hero-cta-row reveal" data-d="2">
+          <a class="store-badge" href="https://apps.apple.com/app/id6821799835" target="_blank" rel="noopener">
+            <picture>
+              <source srcset="../assets/badges/zh-tw-white.svg" media="(prefers-color-scheme: dark)">
+              <img src="../assets/badges/zh-tw-black.svg" alt="於 App Store 下載" height="46">
+            </picture>
+          </a>
+          <div class="qr-quiet">
+            <img src="../assets/qr-appstore.svg" alt="App Store QR" width="44" height="44">
+            <span>用 iPhone 掃描<br>前往 App Store</span>
+          </div>
         </div>
+
+        <p class="hero-footnote reveal" data-d="2"><span class="hn-seg">Apple 本機 Vision</span><span class="hn-dot">·</span><span class="hn-seg">保留 EXIF 拍攝時間</span><span class="hn-dot">·</span><span class="hn-seg">免費</span><span class="hn-dot">·</span><span class="hn-seg">免註冊</span></p>
       </div>
 
-      <p class="hero-note reveal" data-d="2"><span class="hn-seg">100% 本機 AI</span><span class="hn-dot">·</span><span class="hn-seg">保留 EXIF 拍攝日期</span><span class="hn-dot">·</span><span class="hn-seg">免費</span><span class="hn-dot">·</span><span class="hn-seg">免註冊</span></p>
+      <div class="desk-stage reveal" data-d="1">
+        <div class="mat-sheet" aria-hidden="true"></div>
+
+        <figure class="photo-print pr-left">
+          <div class="pp-frame">
+            <img src="../assets/personas/zh/01-hero-park.webp" alt="11. 14 · 午後公園" width="260" height="260" loading="eager">
+          </div>
+          <figcaption class="pp-note">
+            <span>11. 14 · 午後公園</span>
+            <svg class="pencil-chk" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.72"/><path d="M6.3 10.3 8.9 12.8 13.8 7.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </figcaption>
+        </figure>
+
+        <div class="device-frame">
+          <img src="../assets/screenshots/zh-Hant/ss-01.webp" alt="FamilyPick — 挑出好神情" width="680" height="1478" loading="eager" fetchpriority="high">
+        </div>
+
+        <figure class="photo-print pr-right">
+          <div class="pp-frame">
+            <img src="../assets/personas/zh/03-snack-smile.webp" alt="11. 16 · 點心時刻" width="240" height="240" loading="eager">
+          </div>
+          <figcaption class="pp-note">
+            <span>11. 16 · 點心時刻</span>
+            <svg class="pencil-chk" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.72"/><path d="M6.3 10.3 8.9 12.8 13.8 7.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CHAPTER I: ASYMMETRIC EDITORIAL ESSAY + 01-03 INDEX -->
+    <section class="essay-sec">
+      <div class="sec-bar reveal">
+        <span><span class="num-it">01</span> &nbsp;/&nbsp; 挑片的方式</span>
+        <span class="num-it">01 — 03</span>
+      </div>
+
+      <div class="essay-grid">
+        <div class="essay-lead reveal">
+          <h2>讓夜晚整理照片，<br>重新變得安靜輕鬆。</h2>
+          <p>沒有繁瑣的設定，只順著你平常挑片的習慣，留住真正想分享給阿公阿嬤與家人的瞬間。</p>
+          <figure class="essay-print">
+            <div class="ep-img"><img src="../assets/personas/zh/02-play-blocks.webp" alt="11. 18 · 玩積木" width="320" height="240" loading="lazy"></div>
+            <figcaption class="ep-cap">11. 18 · 玩積木</figcaption>
+          </figure>
+        </div>
+
+        <div class="notes-list">
+          <article class="note-item reveal">
+            <span class="note-num">01</span>
+            <div class="note-body">
+              <h3>越勾選，越懂你的眼光</h3>
+              <p>模糊連拍與雜亂背景會退到一旁，日常的 ✓ 勾選與取消會自然教會它你偏愛的神情與構圖。</p>
+            </div>
+          </article>
+          <article class="note-item reveal" data-d="1">
+            <span class="note-num">02</span>
+            <div class="note-body">
+              <h3>拍攝日期原封不動，直達《家家相簿》</h3>
+              <p>僅在你點擊「建立相簿」時產生簡潔的日期相簿，100% 保留原始 EXIF 拍攝時間並可直接開啟《家家相簿》。</p>
+            </div>
+          </article>
+          <article class="note-item reveal" data-d="2">
+            <span class="note-num">03</span>
+            <div class="note-body">
+              <h3>清空臨時相簿，不再重複推薦</h3>
+              <p>分享完可一鍵清除過去的臨時相簿而不傷原圖；已經放進相簿的照片後續會自動略過。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CHAPTER II: STAGGERED CONTACT-SHEET EXHIBITION ON OATMEAL LINEN -->
+  <section class="linen-band">
+    <div class="wrap">
+      <div class="sec-bar reveal" style="border-top:none; padding-top:0; margin-bottom:18px">
+        <span><span class="num-it">02</span> &nbsp;/&nbsp; 四個畫面</span>
+        <span class="num-it">Fig. 01 — 04</span>
+      </div>
+      <div class="ex-head reveal">
+        <h2>乾淨順暢的四個步驟</h2>
+        <p>選定期間、留住喜歡的表情、開啟《家家相簿》上傳，再把臨時相簿輕輕清空。</p>
+      </div>
+      <div class="ex-strip">
+  <article class="ex-item reveal">
+    <div class="ex-cap">
+      <div class="ex-cap-hd">
+        <span class="num-it">01</span>
+        <h3>挑出好神情</h3>
+      </div>
+      <p>優先呈現表情清晰生動的抓拍</p>
     </div>
-
-    <div class="hero-stage reveal" data-d="1">
-      <div class="stage-halo" aria-hidden="true"></div>
-
-      <div class="float-print p-left">
-        <div class="fp-img">
-          <img src="../assets/personas/zh/01-hero-park.webp" alt="陽光下的笑容" width="260" height="260" loading="eager">
-          <span class="fp-pill">♥ 推薦精選</span>
-        </div>
-        <div class="fp-cap">陽光下的笑容</div>
-      </div>
-
-      <div class="hero-phone">
-        <img src="../assets/screenshots/zh-Hant/ss-01.webp" alt="FamilyPick — 自動精選好表情" width="680" height="1478" loading="eager" fetchpriority="high">
-      </div>
-
-      <div class="float-print p-right">
-        <div class="fp-img">
-          <img src="../assets/personas/zh/03-snack-smile.webp" alt="開心點心時刻" width="240" height="240" loading="eager">
-          <span class="fp-check" aria-hidden="true">✓</span>
-        </div>
-        <div class="fp-cap">開心點心時刻</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3-CARD WARM BENTO -->
-  <section class="bento-sec">
-    <div class="sec-head reveal">
-      <h2>讓整理寶寶照片的夜晚變得好輕鬆</h2>
-      <p>不需繁瑣設定，把真正想分享給阿公阿嬤與家人的可愛瞬間留下來。</p>
-    </div>
-
-    <div class="bento-grid">
-      <article class="bento-card reveal">
-        <div class="bento-icon ic-coral" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572 12 20l-7.5-7.428A5 5 0 1 1 12 6.006a5 5 0 1 1 7.5 6.572"/><path d="m9.5 12.5 1.8 1.8 3.7-3.8"/></svg>
-        </div>
-        <h3>越勾選，越懂你的眼光</h3>
-        <p>貼心收起模糊連拍與雜亂背景，從日常的 ✓ 勾選自然學會你偏愛的表情與構圖。</p>
-      </article>
-
-      <article class="bento-card reveal" data-d="1">
-        <div class="bento-icon ic-amber" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="4"/><path d="M8 2v4M16 2v4M3 9.5h18"/><path d="m9.5 14.5 1.8 1.8 3.7-3.8"/></svg>
-        </div>
-        <h3>拍攝日期原封不動，直達《家家相簿》</h3>
-        <p>只在你點擊「建立相簿」時產生日期相簿，100% 保留原始 EXIF 拍攝時間並一鍵開啟《家家相簿》。</p>
-      </article>
-
-      <article class="bento-card reveal" data-d="2">
-        <div class="bento-icon ic-taupe" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="14" rx="3"/><path d="M7 3h10"/><circle cx="9.5" cy="11.5" r="1.5"/><path d="m20 16-4.5-4.5L9 18"/></svg>
-        </div>
-        <h3>一鍵清理臨時相簿，自動防重</h3>
-        <p>分享完可一鍵清除過去的臨時相簿而不傷原圖；已放進相簿的照片後續會自動略過不重複。</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- 4-SCREEN APP PREVIEW -->
-  <section class="gallery-sec">
-    <div class="gallery-shell reveal">
-      <div class="sec-head">
-        <h2>乾淨順暢的使用流程</h2>
-        <p>從選定期間、微調精選到開啟《家家相簿》與清理相簿，自然銜接。</p>
-      </div>
-      <div class="screen-strip">
-  <article class="screen-card">
-    <div class="sc-meta">
-      <div class="sc-top">
-        <span class="sc-num">1</span>
-        <h3>自動精選好表情</h3>
-      </div>
-      <p>優先呈現清晰生動的日常抓拍</p>
-    </div>
-    <div class="mini-phone">
-      <img src="../assets/screenshots/zh-Hant/ss-01.webp" alt="FamilyPick — 自動精選好表情" width="680" height="1478" loading="lazy">
+    <div class="ex-phone">
+      <img src="../assets/screenshots/zh-Hant/ss-01.webp" alt="FamilyPick — 挑出好神情" width="680" height="1478" loading="lazy">
     </div>
   </article>
-  <article class="screen-card">
-    <div class="sc-meta">
-      <div class="sc-top">
-        <span class="sc-num">2</span>
-        <h3>專屬喜好學習</h3>
+  <article class="ex-item reveal">
+    <div class="ex-cap">
+      <div class="ex-cap-hd">
+        <span class="num-it">02</span>
+        <h3>學習專屬喜好</h3>
       </div>
       <p>1–2 張參考照與 ✓ 選擇越用越準</p>
     </div>
-    <div class="mini-phone">
-      <img src="../assets/screenshots/zh-Hant/ss-02.webp" alt="FamilyPick — 專屬喜好學習" width="680" height="1478" loading="lazy">
+    <div class="ex-phone">
+      <img src="../assets/screenshots/zh-Hant/ss-02.webp" alt="FamilyPick — 學習專屬喜好" width="680" height="1478" loading="lazy">
     </div>
   </article>
-  <article class="screen-card">
-    <div class="sc-meta">
-      <div class="sc-top">
-        <span class="sc-num">3</span>
-        <h3>一鍵開啟《家家相簿》</h3>
+  <article class="ex-item reveal">
+    <div class="ex-cap">
+      <div class="ex-cap-hd">
+        <span class="num-it">03</span>
+        <h3>開啟《家家相簿》</h3>
       </div>
-      <p>建好相簿即可馬上批次上傳</p>
+      <p>建好相簿後即可馬上批次上傳</p>
     </div>
-    <div class="mini-phone">
-      <img src="../assets/screenshots/zh-Hant/ss-03.webp" alt="FamilyPick — 一鍵開啟《家家相簿》" width="680" height="1478" loading="lazy">
+    <div class="ex-phone">
+      <img src="../assets/screenshots/zh-Hant/ss-03.webp" alt="FamilyPick — 開啟《家家相簿》" width="680" height="1478" loading="lazy">
     </div>
   </article>
-  <article class="screen-card">
-    <div class="sc-meta">
-      <div class="sc-top">
-        <span class="sc-num">4</span>
-        <h3>安全清理臨時相簿</h3>
+  <article class="ex-item reveal">
+    <div class="ex-cap">
+      <div class="ex-cap-hd">
+        <span class="num-it">04</span>
+        <h3>安心清理相簿</h3>
       </div>
-      <p>只清臨時相簿，原圖 100% 安全</p>
+      <p>只移除臨時相簿，原圖完好無損</p>
     </div>
-    <div class="mini-phone">
-      <img src="../assets/screenshots/zh-Hant/ss-04.webp" alt="FamilyPick — 安全清理臨時相簿" width="680" height="1478" loading="lazy">
+    <div class="ex-phone">
+      <img src="../assets/screenshots/zh-Hant/ss-04.webp" alt="FamilyPick — 安心清理相簿" width="680" height="1478" loading="lazy">
     </div>
   </article>
 </div>
     </div>
   </section>
 
-  <!-- ON-DEVICE PRIVACY CARD -->
-  <section class="privacy-sec">
-    <div class="privacy-card reveal">
-      <div class="priv-emblem" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v6c0 5 3.4 8.3 7 9.5 3.6-1.2 7-4.5 7-9.5V6l-7-3Z"/><path d="m9.5 12 1.8 1.8 3.7-3.8"/></svg>
-      </div>
-      <div class="priv-body">
-        <h2>寶寶的照片，始終只留在你的 iPhone 裡</h2>
-        <p>臉部與場景分析及喜好學習皆透過 Apple 本機 Vision 於手機內獨立完成。照片與臉部特徵絕不上傳伺服器或雲端 AI，免註冊且無廣告追蹤。</p>
-        <div class="priv-pills">
-          <span class="priv-pill">0 照片上傳伺服器</span>
-          <span class="priv-pill">0 外部 AI 訓練</span>
-          <span class="priv-pill">100% 原圖完整保留</span>
+  <!-- CHAPTER III: TWO-COLUMN ARCHIVAL LEDGER (PRIVACY + Q&A) -->
+  <div class="wrap">
+    <section class="ledger-sec">
+      <div class="ledger-grid">
+        <div class="priv-col reveal">
+          <div class="sec-bar">
+            <span><span class="num-it">03</span> &nbsp;/&nbsp; 本機隱私原則</span>
+            <span class="num-it">On-Device</span>
+          </div>
+          <h2>寶寶的每一張照片，<br>都只留在你的 iPhone 裡。</h2>
+          <p>臉部與場景辨識及喜好學習皆透過 Apple 本機 Vision 於手機內獨立完成。照片與臉部特徵絕不上傳伺服器或雲端 AI，免註冊且不含廣告追蹤。</p>
+          <dl class="spec-dl">
+            <div class="spec-row"><dt>上傳伺服器照片</dt><dd>0 張</dd></div>
+            <div class="spec-row"><dt>外部雲端 AI 訓練</dt><dd>絕不使用</dd></div>
+            <div class="spec-row"><dt>照片圖庫原圖</dt><dd>不改動 · 不刪除</dd></div>
+          </dl>
+          <a class="text-link" href="../privacy-en.html">閱讀完整隱私權政策 ↗</a>
         </div>
-        <a class="priv-link" href="../privacy-en.html">閱讀隱私權政策 →</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- MINIMAL 3-ITEM FAQ -->
-  <section class="faq-sec reveal">
-    <h2>常見問題</h2>
-    <div class="faq-list">
-      <details class="faq-row" open>
-        <summary><span>寶寶的照片會上傳到伺服器或拿去訓練外部 AI 嗎？</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 7.5 10 12.5 15 7.5"/></svg></summary>
-        <p>絕對不會。所有照片分析、Apple Vision 辨識與喜好學習皆 100% 在你的 iPhone 本機完成，零照片上傳。</p>
-      </details>
-      <details class="faq-row">
-        <summary><span>上傳到《家家相簿》時，原本的拍攝日期會保留嗎？</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 7.5 10 12.5 15 7.5"/></svg></summary>
-        <p>會。僅在你點擊「建立相簿」時直接連結照片圖庫原檔，EXIF 拍攝日期與時間 100% 完整保留。</p>
-      </details>
-      <details class="faq-row">
-        <summary><span>刪除臨時候選相簿會刪到原始照片嗎？App 免費嗎？</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 7.5 10 12.5 15 7.5"/></svg></summary>
-        <p>不會刪除任何原圖，僅移除臨時相簿清單本身，且已入簿照片不會重複推薦。FamilyPick 可於 App Store 免費下載。</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- WARM SUNLIT CLOSING CARD -->
-  <section class="closing-sec">
-    <div class="closing-card reveal">
-      <div class="closing-icon">
-        <img src="../assets/app-icon.png" alt="FamilyPick" width="56" height="56">
-      </div>
-      <h2>累積好久的寶寶照片，今天花一分鐘輕鬆挑完吧。</h2>
-      <p>挑出這週最可愛的笑容，輕鬆分享給最愛他的家人。</p>
-      <div class="closing-actions">
-        <a class="store-badge" href="https://apps.apple.com/app/id6821799835" target="_blank" rel="noopener">
-          <picture>
-            <source srcset="../assets/badges/zh-tw-white.svg" media="(prefers-color-scheme: dark)">
-            <img src="../assets/badges/zh-tw-black.svg" alt="於 App Store 下載" height="48">
-          </picture>
-        </a>
-        <div class="qr-inline">
-          <img src="../assets/qr-appstore.svg" alt="App Store QR" width="44" height="44">
-          <span>用 iPhone 相機掃描<br>立即前往 App Store</span>
+        <div class="faq-col reveal" data-d="1">
+          <div class="sec-bar">
+            <span><span class="num-it">04</span> &nbsp;/&nbsp; 三個常見問題</span>
+            <span class="num-it">Q &amp; A</span>
+          </div>
+          <div class="faq-list">
+            <details class="faq-row" open>
+              <summary><span>寶寶的照片會上傳到伺服器或拿去訓練外部 AI 嗎？</span><span class="faq-mark" aria-hidden="true">+</span></summary>
+              <p>絕對不會。所有照片分析、Apple Vision 辨識與喜好學習皆 100% 在你的 iPhone 本機完成，零照片上傳。</p>
+            </details>
+            <details class="faq-row">
+              <summary><span>上傳到《家家相簿》時，原本的拍攝日期會保留嗎？</span><span class="faq-mark" aria-hidden="true">+</span></summary>
+              <p>會。僅在你點擊「建立相簿」時直接連結照片圖庫原檔，EXIF 拍攝日期與時間 100% 完整保留。</p>
+            </details>
+            <details class="faq-row">
+              <summary><span>刪除臨時候選相簿會刪到原始照片嗎？App 免費嗎？</span><span class="faq-mark" aria-hidden="true">+</span></summary>
+              <p>不會刪除任何原圖，僅移除臨時相簿清單本身，且已入簿照片不會重複推薦。FamilyPick 可於 App Store 免費下載。</p>
+            </details>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- CLOSING POSTCARD SIGN-OFF -->
+    <section class="signoff-sec">
+      <div class="signoff-inner reveal">
+        <div class="signoff-left">
+          <div class="signoff-print" aria-hidden="true">
+            <img src="../assets/personas/zh/04-outdoor-walk.webp" alt="11. 19 · 散步路上" width="200" height="200" loading="lazy">
+          </div>
+          <div class="signoff-copy">
+            <h2>累積好久的成長照片，<br>今晚花一分鐘從容翻開吧。</h2>
+            <p>挑出這週最動人的幾張笑臉，輕鬆分享給最疼愛他的家人。</p>
+          </div>
+        </div>
+        <div class="signoff-actions">
+          <a class="store-badge" href="https://apps.apple.com/app/id6821799835" target="_blank" rel="noopener">
+            <picture>
+              <source srcset="../assets/badges/zh-tw-white.svg" media="(prefers-color-scheme: dark)">
+              <img src="../assets/badges/zh-tw-black.svg" alt="於 App Store 下載" height="46">
+            </picture>
+          </a>
+          <div class="qr-quiet">
+            <img src="../assets/qr-appstore.svg" alt="App Store QR" width="44" height="44">
+            <span>用 iPhone 掃描<br>前往 App Store</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
 </main>
 
 <footer>
   <div class="wrap foot-in">
     <div class="foot-brand">
-      <p><b>Studio Taeo (스튜디오 태오)</b> · D-U-N-S® 696528698</p>
+      <p><strong>Studio Taeo (스튜디오 태오)</strong> &nbsp;·&nbsp; D-U-N-S® 696528698</p>
       <p class="foot-tm">《家家相簿》、FamilyAlbum 與 みてね 為 MIXI, Inc. 之商標。FamilyPick 為 Studio Taeo 獨立開發之應用程式。</p>
     </div>
     <div class="foot-links">

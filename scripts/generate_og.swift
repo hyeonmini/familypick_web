@@ -34,154 +34,147 @@ guard let ctx = NSGraphicsContext(bitmapImageRep: rep) else {
 NSGraphicsContext.current = ctx
 let cg = ctx.cgContext
 
-// Warm sunlit ivory background
-let bgColors = [
-    NSColor(calibratedRed: 1.00, green: 0.985, blue: 0.973, alpha: 1.0).cgColor,
-    NSColor(calibratedRed: 0.992, green: 0.949, blue: 0.925, alpha: 1.0).cgColor
-] as CFArray
-let space = CGColorSpaceCreateDeviceRGB()
-if let grad = CGGradient(colorsSpace: space, colors: bgColors, locations: [0.0, 1.0]) {
-    cg.drawLinearGradient(grad, start: CGPoint(x: 0, y: CGFloat(height)), end: CGPoint(x: CGFloat(width), y: 0), options: [])
-}
+// Warm archival cotton rag paper (#F6F1E9)
+NSColor(calibratedRed: 0.965, green: 0.945, blue: 0.914, alpha: 1.0).setFill()
+cg.fill(CGRect(x: 0, y: 0, width: width, height: height))
 
-// Soft sunlit peach radial glow on right
-let glowColors = [
-    NSColor(calibratedRed: 0.96, green: 0.68, blue: 0.58, alpha: 0.30).cgColor,
-    NSColor(calibratedRed: 0.99, green: 0.88, blue: 0.80, alpha: 0.0).cgColor
-] as CFArray
-if let glow = CGGradient(colorsSpace: space, colors: glowColors, locations: [0.0, 1.0]) {
-    cg.drawRadialGradient(
-        glow,
-        startCenter: CGPoint(x: 930, y: 315),
-        startRadius: 20,
-        endCenter: CGPoint(x: 930, y: 315),
-        endRadius: 340,
-        options: []
-    )
-}
+// Subtle oatmeal mat sheet on right
+cg.saveGState()
+cg.translateBy(x: 938, y: 315)
+cg.rotate(by: 2.0 * .pi / 180.0)
+let matRect = CGRect(x: -175, y: -235, width: 350, height: 470)
+NSColor(calibratedRed: 0.925, green: 0.898, blue: 0.855, alpha: 1.0).setFill()
+cg.fill(matRect)
+NSColor(calibratedRed: 0.12, green: 0.10, blue: 0.09, alpha: 0.12).setStroke()
+cg.stroke(matRect, width: 1)
+cg.restoreGState()
 
-func drawRoundedImage(_ url: URL, in rect: CGRect, radius: CGFloat, border: NSColor? = nil, borderWidth: CGFloat = 0, shadowAlpha: CGFloat = 0.16) {
-    guard let img = NSImage(contentsOf: url) else { return }
-    cg.saveGState()
-    if shadowAlpha > 0 {
-        cg.setShadow(offset: CGSize(width: 0, height: -12), blur: 28, color: NSColor(calibratedRed: 0.36, green: 0.18, blue: 0.12, alpha: shadowAlpha).cgColor)
-    }
-    let outerPath = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
-    NSColor.white.setFill()
-    outerPath.fill()
-    cg.restoreGState()
-
-    cg.saveGState()
-    outerPath.addClip()
-    img.draw(in: rect, from: .zero, operation: .sourceOver, fraction: 1.0)
-    cg.restoreGState()
-
-    if let border = border, borderWidth > 0 {
-        cg.saveGState()
-        border.setStroke()
-        outerPath.lineWidth = borderWidth
-        outerPath.stroke()
-        cg.restoreGState()
-    }
-}
-
-func drawPolaroid(_ url: URL, center: CGPoint, size: CGFloat, angleDeg: CGFloat) {
+func drawMattePrint(_ url: URL, center: CGPoint, size: CGFloat, angleDeg: CGFloat) {
     guard let img = NSImage(contentsOf: url) else { return }
     cg.saveGState()
     cg.translateBy(x: center.x, y: center.y)
     cg.rotate(by: angleDeg * .pi / 180.0)
 
-    let cardRect = CGRect(x: -size / 2 - 10, y: -size / 2 - 14, width: size + 20, height: size + 24)
+    let cardRect = CGRect(x: -size / 2 - 9, y: -size / 2 - 20, width: size + 18, height: size + 29)
     cg.saveGState()
-    cg.setShadow(offset: CGSize(width: 0, height: -10), blur: 24, color: NSColor(calibratedRed: 0.34, green: 0.17, blue: 0.11, alpha: 0.18).cgColor)
-    let cardPath = NSBezierPath(roundedRect: cardRect, xRadius: 20, yRadius: 20)
-    NSColor.white.setFill()
+    cg.setShadow(offset: CGSize(width: 0, height: -12), blur: 26, color: NSColor(calibratedRed: 0.14, green: 0.10, blue: 0.07, alpha: 0.22).cgColor)
+    let cardPath = NSBezierPath(roundedRect: cardRect, xRadius: 3, yRadius: 3)
+    NSColor(calibratedRed: 0.988, green: 0.984, blue: 0.973, alpha: 1.0).setFill()
     cardPath.fill()
     cg.restoreGState()
 
-    let imgRect = CGRect(x: -size / 2, y: -size / 2 + 2, width: size, height: size)
-    cg.saveGState()
-    let clip = NSBezierPath(roundedRect: imgRect, xRadius: 13, yRadius: 13)
-    clip.addClip()
+    let imgRect = CGRect(x: -size / 2, y: -size / 2, width: size, height: size)
     img.draw(in: imgRect, from: .zero, operation: .sourceOver, fraction: 1.0)
-    cg.restoreGState()
 
-    NSColor(calibratedRed: 0.43, green: 0.28, blue: 0.21, alpha: 0.10).setStroke()
+    NSColor(calibratedRed: 0.12, green: 0.10, blue: 0.09, alpha: 0.12).setStroke()
     cardPath.lineWidth = 1
     cardPath.stroke()
     cg.restoreGState()
 }
 
-// Right side composition: 2 warm floating prints + Build 13 phone centerpiece
-drawPolaroid(photo1URL, center: CGPoint(x: 785, y: 215), size: 148, angleDeg: 7.0)
-drawPolaroid(photo2URL, center: CGPoint(x: 1075, y: 405), size: 136, angleDeg: -6.5)
+drawMattePrint(photo1URL, center: CGPoint(x: 785, y: 196), size: 146, angleDeg: 4.5)
+drawMattePrint(photo2URL, center: CGPoint(x: 1080, y: 422), size: 132, angleDeg: -5.0)
 
-// Warm pearl phone bezel
-let phoneW: CGFloat = 246
-let phoneH: CGFloat = 534
-let phoneRect = CGRect(x: 930 - phoneW / 2, y: (CGFloat(height) - phoneH) / 2, width: phoneW, height: phoneH)
+// Stone-ivory phone frame
+let phoneW: CGFloat = 240
+let phoneH: CGFloat = 522
+let phoneRect = CGRect(x: 932 - phoneW / 2, y: (CGFloat(height) - phoneH) / 2, width: phoneW, height: phoneH)
 cg.saveGState()
-cg.setShadow(offset: CGSize(width: 0, height: -18), blur: 40, color: NSColor(calibratedRed: 0.34, green: 0.17, blue: 0.11, alpha: 0.24).cgColor)
-let bezelRect = phoneRect.insetBy(dx: -8, dy: -8)
-let bezelPath = NSBezierPath(roundedRect: bezelRect, xRadius: 38, yRadius: 38)
-NSColor(calibratedRed: 0.957, green: 0.925, blue: 0.902, alpha: 1.0).setFill()
+cg.setShadow(offset: CGSize(width: 0, height: -20), blur: 44, color: NSColor(calibratedRed: 0.14, green: 0.10, blue: 0.07, alpha: 0.28).cgColor)
+let bezelRect = phoneRect.insetBy(dx: -7, dy: -7)
+let bezelPath = NSBezierPath(roundedRect: bezelRect, xRadius: 36, yRadius: 36)
+NSColor(calibratedRed: 0.918, green: 0.890, blue: 0.851, alpha: 1.0).setFill()
 bezelPath.fill()
 cg.restoreGState()
 
-drawRoundedImage(phoneURL, in: phoneRect, radius: 30, border: NSColor(calibratedRed: 0.43, green: 0.28, blue: 0.21, alpha: 0.14), borderWidth: 1, shadowAlpha: 0)
-
-// Left side brand & editorial copy
-drawRoundedImage(iconURL, in: CGRect(x: 84, y: 468, width: 68, height: 68), radius: 17, shadowAlpha: 0.20)
-
-func font(_ size: CGFloat, weight: NSFont.Weight) -> NSFont {
-    return NSFont(name: "AppleSDGothicNeo-Bold", size: size) ?? NSFont.systemFont(ofSize: size, weight: weight)
+if let phoneImg = NSImage(contentsOf: phoneURL) {
+    cg.saveGState()
+    let clip = NSBezierPath(roundedRect: phoneRect, xRadius: 29, yRadius: 29)
+    clip.addClip()
+    phoneImg.draw(in: phoneRect, from: .zero, operation: .sourceOver, fraction: 1.0)
+    cg.restoreGState()
+    NSColor(calibratedRed: 0.12, green: 0.10, blue: 0.09, alpha: 0.16).setStroke()
+    bezelPath.lineWidth = 1
+    bezelPath.stroke()
 }
-func regFont(_ size: CGFloat) -> NSFont {
-    return NSFont(name: "AppleSDGothicNeo-Medium", size: size) ?? NSFont.systemFont(ofSize: size, weight: .medium)
+
+// Top-left masthead mark
+if let iconImg = NSImage(contentsOf: iconURL) {
+    let iconRect = CGRect(x: 86, y: 504, width: 38, height: 38)
+    cg.saveGState()
+    let clip = NSBezierPath(roundedRect: iconRect, xRadius: 8, yRadius: 8)
+    clip.addClip()
+    iconImg.draw(in: iconRect, from: .zero, operation: .sourceOver, fraction: 1.0)
+    cg.restoreGState()
 }
 
-let brandAttrs: [NSAttributedString.Key: Any] = [
-    .font: font(24, weight: .bold),
-    .foregroundColor: NSColor(calibratedRed: 0.14, green: 0.11, blue: 0.10, alpha: 1.0)
-]
-("패밀리픽 · FamilyPick" as NSString).draw(at: CGPoint(x: 168, y: 486), withAttributes: brandAttrs)
+func serifFont(_ size: CGFloat) -> NSFont {
+    return NSFont(name: "AppleMyungjo", size: size) ?? NSFont.systemFont(ofSize: size, weight: .regular)
+}
+func sansFont(_ size: CGFloat, weight: NSFont.Weight = .regular) -> NSFont {
+    let name = weight == .medium ? "AppleSDGothicNeo-Medium" : "AppleSDGothicNeo-Regular"
+    return NSFont(name: name, size: size) ?? NSFont.systemFont(ofSize: size, weight: weight)
+}
 
-// Headline line 1
-let h1Attrs: [NSAttributedString.Key: Any] = [
-    .font: font(46, weight: .bold),
-    .foregroundColor: NSColor(calibratedRed: 0.14, green: 0.11, blue: 0.10, alpha: 1.0)
-]
-("올릴 만한 아이 사진만," as NSString).draw(at: CGPoint(x: 84, y: 360), withAttributes: h1Attrs)
+let ink = NSColor(calibratedRed: 0.118, green: 0.102, blue: 0.090, alpha: 1.0)
+let inkSoft = NSColor(calibratedRed: 0.35, green: 0.31, blue: 0.28, alpha: 1.0)
+let inkMuted = NSColor(calibratedRed: 0.54, green: 0.50, blue: 0.45, alpha: 1.0)
 
-// Headline line 2 (Coral)
-let h2Attrs: [NSAttributedString.Key: Any] = [
-    .font: font(46, weight: .bold),
-    .foregroundColor: NSColor(calibratedRed: 0.85, green: 0.30, blue: 0.23, alpha: 1.0)
-]
-("내 기준으로 쏙." as NSString).draw(at: CGPoint(x: 84, y: 298), withAttributes: h2Attrs)
+("패밀리픽  ·  FamilyPick" as NSString).draw(
+    at: CGPoint(x: 138, y: 511),
+    withAttributes: [.font: sansFont(19, weight: .medium), .foregroundColor: ink]
+)
 
-// Warm subtitle
-let subStyle = NSMutableParagraphStyle()
-subStyle.lineSpacing = 6
-let subAttrs: [NSAttributedString.Key: Any] = [
-    .font: regFont(21),
-    .foregroundColor: NSColor(calibratedRed: 0.39, green: 0.34, blue: 0.31, alpha: 1.0),
-    .paragraphStyle: subStyle
-]
-("체크(✓)할수록 우리 집 기준을 배우는 다정한 사진 선별.\n100% 온디바이스 AI · 사진 서버 전송 0장" as NSString)
-    .draw(in: CGRect(x: 84, y: 178, width: 580, height: 84), withAttributes: subAttrs)
+// Quiet hairline rule + overline
+cg.setStrokeColor(inkMuted.withAlphaComponent(0.65).cgColor)
+cg.setLineWidth(1)
+cg.move(to: CGPoint(x: 86, y: 428))
+cg.addLine(to: CGPoint(x: 114, y: 428))
+cg.strokePath()
 
-// Soft pill at bottom left
-let pillRect = CGRect(x: 84, y: 92, width: 326, height: 40)
-let pillPath = NSBezierPath(roundedRect: pillRect, xRadius: 20, yRadius: 20)
-NSColor(calibratedRed: 0.992, green: 0.925, blue: 0.906, alpha: 1.0).setFill()
-pillPath.fill()
+("패밀리앨범 · 가족 공유 전 사진 선별" as NSString).draw(
+    at: CGPoint(x: 126, y: 419),
+    withAttributes: [.font: sansFont(16), .foregroundColor: inkMuted]
+)
 
-let pillAttrs: [NSAttributedString.Key: Any] = [
-    .font: regFont(16),
-    .foregroundColor: NSColor(calibratedRed: 0.74, green: 0.23, blue: 0.16, alpha: 1.0)
-]
-("패밀리앨범 · 가족 공유를 위한 iPhone 앱" as NSString).draw(at: CGPoint(x: 106, y: 101), withAttributes: pillAttrs)
+// Single-ink Myeongjo editorial headline
+("가족에게 건넬 아이 사진," as NSString).draw(
+    at: CGPoint(x: 86, y: 338),
+    withAttributes: [.font: serifFont(44), .foregroundColor: ink]
+)
+("내 기준대로 추립니다." as NSString).draw(
+    at: CGPoint(x: 86, y: 274),
+    withAttributes: [.font: serifFont(44), .foregroundColor: ink]
+)
+
+// Hand-sketched vermilion pencil curve under "내 기준대로"
+cg.saveGState()
+cg.setStrokeColor(NSColor(calibratedRed: 0.76, green: 0.286, blue: 0.212, alpha: 0.85).cgColor)
+cg.setLineWidth(2.8)
+cg.setLineCap(.round)
+cg.move(to: CGPoint(x: 88, y: 268))
+cg.addCurve(to: CGPoint(x: 298, y: 270), control1: CGPoint(x: 145, y: 273), control2: CGPoint(x: 235, y: 273))
+cg.strokePath()
+cg.restoreGState()
+
+// Calm body note
+let pStyle = NSMutableParagraphStyle()
+pStyle.lineSpacing = 8
+("수백 장의 연사 너머, 남기고 싶은 표정만 먼저 골라둡니다.\n모든 사진과 시선 학습은 오직 iPhone 안에서만 다뤄집니다." as NSString).draw(
+    in: CGRect(x: 86, y: 156, width: 570, height: 84),
+    withAttributes: [.font: sansFont(19), .foregroundColor: inkSoft, .paragraphStyle: pStyle]
+)
+
+// Bottom hairline colophon
+cg.setStrokeColor(NSColor(calibratedRed: 0.12, green: 0.10, blue: 0.09, alpha: 0.12).cgColor)
+cg.move(to: CGPoint(x: 86, y: 120))
+cg.addLine(to: CGPoint(x: 610, y: 120))
+cg.strokePath()
+
+("Studio Taeo  ·  familypick.studiotaeo.com" as NSString).draw(
+    at: CGPoint(x: 86, y: 84),
+    withAttributes: [.font: sansFont(15), .foregroundColor: inkMuted]
+)
 
 NSGraphicsContext.restoreGraphicsState()
 
