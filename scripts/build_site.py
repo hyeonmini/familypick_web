@@ -365,17 +365,23 @@ def render_signoff_print(loc: dict, s: dict, persona_map: dict, prefix: str) -> 
 
 
 def render_gallery_strip(s: dict, ss_list: list, prefix: str) -> str:
+    # Chronological workflow order:
+    #   01 -> ss-02 (Pick reference photos)
+    #   02 -> ss-01 (Review picks, check/uncheck & create album)
+    #   03 -> ss-03 (Open FamilyAlbum prompt)
+    #   04 -> ss-04 (Safe cleanup of temporary albums)
+    ss_indices = [1, 0, 2, 3]
     cards = ['<div class="ex-strip">']
-    for idx in range(1, 5):
-        rel = ss_list[idx - 1] if len(ss_list) >= idx else f"assets/screenshots/ko/ss-0{idx}.webp"
-        title = s[f"G{idx}_TITLE"]
-        desc = s[f"G{idx}_DESC"]
+    for step_num, ss_idx in enumerate(ss_indices, start=1):
+        rel = ss_list[ss_idx] if len(ss_list) > ss_idx else f"assets/screenshots/ko/ss-0{ss_idx + 1}.webp"
+        title = s[f"G{step_num}_TITLE"]
+        desc = s[f"G{step_num}_DESC"]
         alt_text = html_lib.escape(f"{s['BRAND']} — {title}", quote=True)
         cards.append(
             f"""  <article class="ex-item reveal">
     <div class="ex-cap">
       <div class="ex-cap-hd">
-        <span class="num-it">0{idx}</span>
+        <span class="num-it">0{step_num}</span>
         <h3>{title}</h3>
       </div>
       <p>{desc}</p>
