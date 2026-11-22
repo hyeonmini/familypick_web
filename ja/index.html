@@ -1003,6 +1003,82 @@ footer {
   * { animation: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+    .upload-bridge{
+      margin-top: 44px;
+      padding: 28px 30px;
+      border-radius: 20px;
+      background: rgba(255,252,247,0.88);
+      border: 1px solid rgba(58,42,30,0.10);
+      box-shadow: 0 10px 30px rgba(42,30,20,0.05);
+    }
+    .upload-bridge-head{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px 18px;
+      margin-bottom: 20px;
+    }
+    .upload-bridge-kicker{
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent, #D94E34);
+    }
+    .upload-bridge-head h3{
+      margin: 0;
+      font-size: clamp(18px, 2.2vw, 22px);
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+    .upload-steps{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .upload-step{
+      position: relative;
+      padding: 18px 18px 16px;
+      border-radius: 14px;
+      background: rgba(244,238,229,0.62);
+      border: 1px solid rgba(58,42,30,0.08);
+    }
+    .upload-step-num{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 24px;
+      padding: 0 8px;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      background: rgba(217,78,52,0.12);
+      color: var(--accent, #D94E34);
+      font-size: 12px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .upload-step h4{
+      margin: 0 0 6px;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--ink, #1E1814);
+    }
+    .upload-step p{
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--muted, #5E5248);
+    }
+    @media (max-width: 780px){
+      .upload-bridge{ padding: 22px 18px; margin-top: 32px; }
+      .upload-steps{ grid-template-columns: 1fr; gap: 12px; }
+    }
 </style>
 </head>
 <body>
@@ -1181,7 +1257,7 @@ footer {
         <span class="num-it">03</span>
         <h3>「みてね」をすぐ開く</h3>
       </div>
-      <p>作成した日付アルバムからそのまま共有</p>
+      <p>みてねのアップロード画面で作成した「ファミリーピック」アルバムを選んで一括アップ</p>
     </div>
     <div class="ex-phone">
       <img src="../assets/screenshots/ja/ss-03.webp" alt="ファミリーピック — 「みてね」をすぐ開く" width="680" height="1478" loading="lazy">
@@ -1200,6 +1276,29 @@ footer {
     </div>
   </article>
 </div>
+      <div class="upload-bridge reveal">
+        <div class="upload-bridge-head">
+          <span class="upload-bridge-kicker">みてねへのアップロード手順</span>
+          <h3>作ったアルバムを選ぶだけで一括アップロード</h3>
+        </div>
+        <ol class="upload-steps">
+          <li class="upload-step">
+            <span class="upload-step-num">01</span>
+            <h4>ファミリーピックで「アルバムを作成」</h4>
+            <p>選んだ写真・動画が「写真」アプリに日付別のファミリーピックアルバムとしてまとまります。</p>
+          </li>
+          <li class="upload-step">
+            <span class="upload-step-num">02</span>
+            <h4>みてねでそのアルバムを選択</h4>
+            <p>みてねのアップロード（＋）画面からアルバム一覧を開き、作成したファミリーピックアルバムを選びます。</p>
+          </li>
+          <li class="upload-step">
+            <span class="upload-step-num">03</span>
+            <h4>まとめて選択してそのまま送信</h4>
+            <p>アルバム内の写真・動画を一括アップロードすれば、元の撮影日（EXIF）のままきれいに並びます。</p>
+          </li>
+        </ol>
+      </div>
     </div>
   </section>
 
