@@ -132,7 +132,7 @@ cg.move(to: CGPoint(x: 86, y: 428))
 cg.addLine(to: CGPoint(x: 114, y: 428))
 cg.strokePath()
 
-("패밀리앨범 · 가족 공유 전 사진 선별" as NSString).draw(
+("공유 앨범 업로드 전 아이 사진·영상 자동 선별" as NSString).draw(
     at: CGPoint(x: 126, y: 419),
     withAttributes: [.font: sansFont(16), .foregroundColor: inkMuted]
 )
